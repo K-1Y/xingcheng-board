@@ -32,7 +32,8 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   border-bottom:1px solid var(--line);background:var(--panel);z-index:20}
 .hdr .logo{font-size:13px;font-weight:800;letter-spacing:1px}
 .hdr .dt{font-size:10px;color:var(--dim);flex:1;min-width:0;white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis}
+  overflow:hidden;text-overflow:ellipsis;text-align:center}
+.hdr .hbtn.nav{padding:4px 6px;font-size:13px;line-height:1;min-width:24px;text-align:center}
 .hnav{display:flex;align-items:center;background:var(--panel2);border:1px solid var(--line);
   border-radius:999px;padding:1px 2px;flex:none}
 .hnav button{border:0;background:none;color:var(--ink);width:20px;height:20px;
@@ -95,10 +96,10 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 .blk i{position:absolute;top:0;left:3px;font-style:normal;font-size:7.5px;
   color:var(--dim);opacity:.85}
 .course{position:absolute;left:1px;right:1px;z-index:2;border-radius:5px;
-  padding:3px 4px;overflow:hidden;font-size:8.5px;line-height:1.2;color:var(--ink);
+  padding:2px 3px;overflow:hidden;font-size:9px;line-height:1.1;color:var(--ink);
   font-weight:600;border-left:3px solid var(--course);
   background:color-mix(in srgb,var(--course) 22%,transparent);
-  display:flex;flex-direction:column;justify-content:center;gap:2px}
+  display:flex;flex-direction:column;justify-content:space-between;gap:0}
 .course .ct{display:block;overflow:hidden}
 .course i{display:inline-block;font-style:normal;font-size:6px;font-weight:700;
   padding:0 2px;margin-right:2px;border-radius:2px;background:var(--course);
@@ -107,10 +108,14 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   color:var(--ink);opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lt.course{border-left-color:var(--course)}
 .ev{position:absolute;left:2px;right:2px;z-index:3;border-radius:5px;padding:2px 4px;
-  font-size:9px;line-height:1.2;overflow:hidden;cursor:pointer;
+  font-size:9px;line-height:1.1;overflow:hidden;cursor:pointer;
   border-left:3px solid var(--cat,var(--other));
   background:color-mix(in srgb,var(--cat,var(--other)) 28%,transparent);
-  color:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:1px}
+  color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:0}
+.ev .evt{display:block;overflow:hidden}
+.ev .evctl{position:absolute;right:2px;bottom:1px;display:flex;gap:2px;z-index:2}
+.ev .evctl button{width:20px;height:20px;padding:0;line-height:1;font-size:13px;
+  border:1px solid var(--line);border-radius:4px;background:var(--panel2);color:var(--ink)}
 .ev.cat-study{--cat:var(--study)}
 .ev.cat-play{--cat:var(--play)}
 .ev.cat-life{--cat:var(--life)}
@@ -142,21 +147,26 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   background:var(--panel2);border:1px solid var(--line);color:var(--ink);white-space:nowrap}
 .minibar .mb-x{flex:none;margin-left:auto;font-size:8px;color:var(--dim)}
 .app[data-drawer="open"] .minibar{transform:translateY(110%)}
-.drawer{position:absolute;left:0;right:0;bottom:0;height:46%;z-index:35;
+.drawer{position:absolute;left:0;right:0;bottom:0;height:66.67%;z-index:35;
   display:flex;flex-direction:column;background:var(--panel);
-  border-top:1px solid var(--line);border-radius:12px 12px 0 0;
+  border-top:1px solid var(--line);border-radius:14px 14px 0 0;
   box-shadow:0 -8px 26px #0007;transform:translateY(106%);
   transition:transform .3s cubic-bezier(.2,.7,.2,1)}
 .app[data-drawer="open"] .drawer{transform:translateY(0)}
-.dtop{flex:none;height:34px;display:flex;align-items:center;justify-content:space-between;
+.drawerbg{position:absolute;inset:0;z-index:34;background:transparent}
+.drawerbg[hidden]{display:none}
+.dtop{flex:none;height:42px;display:flex;align-items:center;gap:8px;
   padding:0 10px;font-size:11px;color:var(--dim);border-bottom:1px solid var(--line)}
-.dtop b{color:var(--ink);font-size:11px}
+.dtop b{color:var(--ink);font-size:12px;flex:none}
+.dtop .ver{flex:1;font-size:9px;color:var(--dim);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.dtop .dacts{flex:none;display:flex;gap:6px}
 .dtop button{border:1px solid var(--line);background:var(--panel2);color:var(--ink);
-  font-size:9px;border-radius:999px;padding:2px 8px}
+  font-size:12px;border-radius:999px;padding:7px 14px;min-height:30px}
 .dbody{flex:1;overflow-y:auto;padding:2px 8px calc(26px + env(safe-area-inset-bottom))}
 .sec{margin-top:6px}
 .sec h3{margin:5px 2px 3px;font-size:9px;font-weight:700;color:var(--dim);letter-spacing:1px}
-.card{display:flex;gap:6px;align-items:flex-start;padding:5px 6px;margin:4px 0;
+.card{display:flex;gap:8px;align-items:flex-start;padding:7px 8px;margin:5px 0;
   border-radius:8px;background:var(--panel2);border-left:3px solid var(--cat,var(--other))}
 .card.cat-study{--cat:var(--study)}
 .card.cat-play{--cat:var(--play)}
@@ -167,28 +177,28 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 @keyframes cardin{from{transform:translateY(-3px);opacity:.45}to{transform:none;opacity:1}}
 .card.done{opacity:.65}
 .card.done .ct{text-decoration:line-through}
-.cb{flex:none;width:15px;height:15px;margin-top:2px;padding:0;position:relative;
-  border:1.5px solid var(--dim);border-radius:4px;background:none;
+.cb{flex:none;width:20px;height:20px;margin-top:1px;padding:0;position:relative;
+  border:1.5px solid var(--dim);border-radius:5px;background:none;
   transition:background .18s,border-color .18s}
 .cb.on{background:var(--study);border-color:var(--study)}
-.cb.on::after{content:"✓";position:absolute;inset:0;font-size:10px;color:#fff;
-  line-height:12px;text-align:center}
+.cb.on::after{content:"✓";position:absolute;inset:0;font-size:13px;color:#fff;
+  line-height:16px;text-align:center}
 .cmain{min-width:0;flex:1}
-.ct{font-size:12px;line-height:1.3;word-break:break-all}
-.cm{display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin-top:2px}
-.tag{font-style:normal;font-size:8px;padding:0 3px;border-radius:3px;
+.ct{font-size:13px;line-height:1.3;word-break:break-all}
+.cm{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:3px}
+.tag{font-style:normal;font-size:9px;padding:1px 4px;border-radius:3px;
   background:var(--bg);color:var(--dim);white-space:nowrap}
 .tag.study{color:var(--study)}
 .tag.play{color:var(--play)}
 .tag.life{color:var(--life)}
 .tag.big{color:var(--hot)}
 .tag.new{color:#08111f;background:var(--study);font-weight:700}
-.lenbox{display:flex;align-items:center;gap:2px;margin-left:auto}
-.lenbox button{width:16px;height:16px;padding:0;font-size:11px;line-height:1;
-  border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px}
-.len{font-size:9px;color:var(--dim);min-width:26px;text-align:center}
-.placebtn{font-size:8px;border:1px solid var(--line);background:var(--bg);
-  color:var(--dim);border-radius:4px;padding:1px 4px}
+.lenbox{display:flex;align-items:center;gap:4px;margin-left:auto}
+.lenbox button{width:26px;height:26px;padding:0;font-size:15px;line-height:1;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px}
+.len{font-size:10px;color:var(--dim);min-width:30px;text-align:center}
+.placebtn{font-size:10px;border:1px solid var(--line);background:var(--bg);
+  color:var(--ink);border-radius:5px;padding:5px 8px}
 details.trash{margin:8px 0;border-top:1px solid var(--line);padding-top:6px}
 details.trash summary{font-size:9px;color:var(--dim)}
 .trow{display:flex;justify-content:space-between;gap:8px;font-size:10px;
@@ -197,15 +207,16 @@ details.trash summary{font-size:9px;color:var(--dim)}
 
 /* ---------- 悬浮按钮 ---------- */
 .dock{position:absolute;right:8px;bottom:calc(var(--bar) + 8px);z-index:40;
-  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none;
   transition:bottom .3s cubic-bezier(.2,.7,.2,1)}
-.app[data-drawer="open"] .dock{bottom:calc(46% + 8px)}
+.dock .fab,.dock .copy{pointer-events:auto}
+.app[data-drawer="open"] .dock{bottom:calc(66.67% + 8px)}
 .copy{border:1px solid var(--line);background:var(--panel2);color:var(--dim);
   font-size:10px;border-radius:999px;padding:7px 11px;box-shadow:0 4px 14px #0005;
   transition:all .25s}
 .copy.on{color:#08111f;background:var(--study);border-color:var(--study);
   font-weight:800;box-shadow:0 4px 18px color-mix(in srgb,var(--study) 55%,transparent)}
-.copy:disabled{opacity:.5}
+.copy:disabled{opacity:.35;pointer-events:none}
 .fab{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);
   background:var(--panel2);color:var(--ink);font-size:18px;line-height:1;
   box-shadow:0 6px 20px #0008;position:relative;padding:0}
@@ -285,7 +296,9 @@ details.trash summary{font-size:9px;color:var(--dim)}
 <div id="app" class="app" data-drawer="mini">
   <header class="hdr">
     <span class="logo">行程</span>
-    <span class="dt" id="hdt">2026-10-31</span>
+    <button class="hbtn nav" data-act="day" data-d="-1" aria-label="前一天">‹</button>
+    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-10-31</span>
+    <button class="hbtn nav" data-act="day" data-d="1" aria-label="后一天">›</button>
     <span class="hnav">
       <button data-act="wk" data-d="-7" aria-label="上一周">−</button>
       <span id="wk">第 1 周</span>
@@ -295,10 +308,12 @@ details.trash summary{font-size:9px;color:var(--dim)}
   </header>
   <div id="board" class="board" data-expand="none"></div>
   <div id="minibar" class="minibar" data-act="drawer"></div>
+  <div id="drawerbg" class="drawerbg" data-act="drawer" hidden></div>
   <aside id="drawer" class="drawer" aria-label="任务栏">
     <div class="dtop">
       <b>任务栏</b>
-      <span style="display:flex;gap:6px">
+      <span class="ver" id="boardver"></span>
+      <span class="dacts">
         <button data-act="recopy">上次码</button>
         <button data-act="drawer">收起</button>
       </span>
@@ -315,14 +330,13 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-10-31","generatedAt":"2026-10-31T10:16:07+08:00","boardId":"2891","syncedThrough":"2026-10-31T10:16:07+08:00","stats":{"total":2,"pending":2,"doneToday":0,"overdue":2,"big":0,"deferTotal":0},"counts":{"overdue":2,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[{"taskId":"t_7ac96529","title":"二教开会","deadline":"2026-10-28T15:00:00+08:00","slot":{"start":"2026-10-28T15:00:00+08:00","end":"2026-10-28T16:00:00+08:00"},"window":null,"weight":2,"estMin":60,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:36:21+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"overdue","code":"6529"},{"taskId":"t_7ad196d1","title":"我 也要去二教开会","deadline":"2026-10-29T15:00:00+08:00","slot":{"start":"2026-10-29T15:00:00+08:00","end":"2026-10-29T16:00:00+08:00"},"window":null,"weight":2,"estMin":60,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:45:18+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"overdue","code":"96d1"}],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-10-31","generatedAt":"2026-10-31T11:29:59+08:00","boardId":"feb1","syncedThrough":"2026-10-31T11:29:59+08:00","stats":{"total":2,"pending":0,"doneToday":2,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[{"taskId":"t_7ad196d1","title":"我 也要去二教开会","deadline":"2026-10-29T15:00:00+08:00","slot":{"start":"2026-11-02T17:30:00+08:00","end":"2026-11-02T18:45:00+08:00"},"window":null,"weight":2,"estMin":75,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:45:18+08:00","status":"done","doneAt":"2026-10-31T11:12:03+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-10-31T11:11:23+08:00","reason":"user_place","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_7ac96529","title":"二教开会","deadline":"2026-10-28T15:00:00+08:00","slot":{"start":"2026-10-28T15:00:00+08:00","end":"2026-10-28T16:00:00+08:00"},"window":null,"weight":2,"estMin":60,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:36:21+08:00","status":"done","doneAt":"2026-10-31T11:11:23+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"}],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
 var B = window.BOARD || {};
-var COURSES = (B.courses || []).map(function(c, i){
-  var o = {}; for(var k in c) o[k] = c[k]; o._idx = i; return o;
-});
+var WEEKLY = copyList(B.courses);
+var OVERRIDES = B.overrides || {};
 var TERM_START = B.termStart || B.today;
 var TERM_WEEK = B.termWeek || 1;
 var HEAD = 40, STRIP = 26, LATEH = 20;
@@ -343,6 +357,7 @@ var warnb = document.getElementById('warnb');
 var bigbar = document.getElementById('bigbar');
 var hdt = document.getElementById('hdt');
 var wk = document.getElementById('wk');
+var boardver = document.getElementById('boardver');
 var toastEl = document.getElementById('toast');
 var appState = {ops:[], anchor:B.today, sel:null, lastCode:'', storageOk:true,
   toastTimer:null, pulse:null};
@@ -350,6 +365,11 @@ var HOURS = []; for (var h = DSTART; h <= DEND; h++) HOURS.push(h);
 
 /* ---------------- 工具 ---------------- */
 function pad(n){ return n < 10 ? '0'+n : ''+n; }
+function copyList(list){
+  return (list || []).map(function(c){
+    var o = {}; for(var k in c) o[k] = c[k]; return o;
+  });
+}
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function wall(ms){ return new Date(ms + 8*3600*1000); }
@@ -382,7 +402,14 @@ function weekLabel(key){
 }
 function coursesOf(day){
   var wd = ((weekdayOf(day)+6)%7)+1;
-  return COURSES.filter(function(c){ return c.weekday === wd; });
+  var week = semWeek(day);
+  var override = OVERRIDES[String(week)];
+  var list = override || WEEKLY;
+  return list.filter(function(c){
+    if(c.weekday !== wd) return false;
+    if(override) return true;
+    return !c.weeks || !c.weeks.length || c.weeks.indexOf(week) >= 0;
+  });
 }
 function dayLabel(key){
   var diff = daysBetween(key, B.today);
@@ -427,16 +454,42 @@ function fitBoard(){
 }
 
 /* ---------------- 存储 ---------------- */
+function opIsAlive(o){
+  if(!o || !o.code || !o.kind) return false;
+  if(!o.sentAt) return true;                       // 没发送的永远留着
+  if(o.board && B.boardId && o.board !== B.boardId) return false;  // 已进入新版本
+  return !(o.sentAt <= Date.parse(B.generatedAt)); // 老规则兜底
+}
+function dedupeOps(list){
+  var byCode = {};
+  list.forEach(function(o){
+    if(!o || !o.code) return;
+    (byCode[o.code] = byCode[o.code] || []).push(o);
+  });
+  var out = [];
+  Object.keys(byCode).forEach(function(code){
+    var arr = byCode[code].sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
+    var lastDone = null, lastLen = null, lastPlace = null;
+    arr.forEach(function(o){
+      if(o.kind === 'D' || o.kind === 'U') lastDone = o;
+      else if(o.kind === 'L') lastLen = o;
+      else if(o.kind === 'P') lastPlace = o;
+    });
+    if(lastDone) out.push(lastDone);               // 完成/取消后，长度和落位都没意义
+    else {
+      if(lastLen) out.push(lastLen);
+      if(lastPlace) out.push(lastPlace);
+    }
+  });
+  return out.sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
+}
 function loadOps(){
   try{
     var raw = localStorage.getItem(KEY);
     if(!raw) return [];
     var arr = JSON.parse(raw);
     if(!Array.isArray(arr)) return [];
-    var gt = Date.parse(B.generatedAt);
-    return arr.filter(function(o){
-      return o && o.code && o.kind && !(o.sentAt && o.sentAt <= gt);
-    });
+    return arr.filter(opIsAlive);
   }catch(e){ appState.storageOk = false; return []; }
 }
 function saveOps(){
@@ -445,15 +498,12 @@ function saveOps(){
     var raw = localStorage.getItem(KEY);
     var stored = raw ? JSON.parse(raw) : [];
     if(!Array.isArray(stored)) stored = [];
-    var gt = Date.parse(B.generatedAt);
-    stored = stored.filter(function(o){
-      return o && o.id && !(o.sentAt && o.sentAt <= gt);
-    });
+    stored = stored.filter(function(o){ return o && o.id && opIsAlive(o); });
     var byId = {};
     stored.forEach(function(o){ byId[o.id] = o; });
     appState.ops.forEach(function(o){ if(o.id) byId[o.id] = o; });
-    appState.ops = Object.keys(byId).map(function(k){ return byId[k]; })
-      .sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
+    appState.ops = dedupeOps(Object.keys(byId).map(function(k){ return byId[k]; })
+      .sort(function(a, b){ return (a.at || 0) - (b.at || 0); }));
     localStorage.setItem(KEY, JSON.stringify(appState.ops));
     appState.storageOk = true;
   }catch(e){ appState.storageOk = false; }
@@ -496,7 +546,10 @@ function addOp(op){
   op.id = Math.random().toString(16).slice(2,8);
   op.at = Date.now();
   op.sentAt = 0;
+  op.board = B.boardId;
+  // 同一任务、同一属性只留最后一条：整点/课间反复点不会堆一长串 L/P
   appState.ops.push(op);
+  appState.ops = dedupeOps(appState.ops);
   appState.pulse = op.code;
   saveOps();
   render();
@@ -529,8 +582,9 @@ function render(){
   var pending = all.filter(function(t){ return !t._done; });
   var done = all.filter(function(t){ return t._done; });
 
-  hdt.textContent = md(B.today)+' 周'+WD[weekdayOf(B.today)]+' · '+pending.length+' 项待办';
+  hdt.textContent = md(appState.anchor)+' 周'+WD[weekdayOf(appState.anchor)]+' · '+pending.length+' 项';
   wk.textContent = weekLabel(appState.anchor);
+  if(boardver) boardver.textContent = '板 '+B.boardId+' · '+hhmmIso(B.generatedAt);
 
   board.innerHTML = railHtml() + columnHtml(addDays(appState.anchor,0), 0, pending)
     + columnHtml(addDays(appState.anchor,1), 1, pending)
@@ -590,8 +644,10 @@ function columnHtml(day, idx, pending){
     var top = Math.max(0, (a - DSTART*60) * PXMIN);
     var bottom = Math.min(DEND*60, Math.max(z, a + 15));
     var ch = Math.max(18, (bottom - Math.max(a, DSTART*60)) * PXMIN);
-    gh += '<div class="course" data-act="course" data-ci="'+c._idx
-      + '" style="top:'+top+'px;height:'+ch+'px"'
+    gh += '<div class="course" data-act="course"'
+      + ' data-title="'+esc(c.title)+'" data-loc="'+esc(c.loc || '')+'"'
+      + ' data-wd="'+c.weekday+'" data-st="'+c.start+'" data-en="'+c.end+'"'
+      + ' style="top:'+top+'px;height:'+ch+'px"'
       + ' title="'+esc(c.title+' '+c.start+'-'+c.end+(c.loc ? ' '+c.loc : ''))+'">'
       + '<span class="ct"><i>课</i>'+esc(c.title)+'</span>'
       + '<em>'+esc(c.loc || '')+'</em></div>';
@@ -605,10 +661,14 @@ function columnHtml(day, idx, pending){
     var top = Math.max(0, (a - DSTART*60) * PXMIN);
     var bottom = Math.min(DEND*60, Math.max(z, a + 15));
     var tall = Math.max(20, (bottom - Math.max(a, DSTART*60)) * PXMIN);
+    var ctl = tall >= 34
+      ? '<span class="evctl"><button data-act="minus" data-code="'+t.code+'">−</button>'
+        + '<button data-act="plus" data-code="'+t.code+'">+</button></span>'
+      : '';
     gh += '<div class="ev '+catClass(t.category)+(t._touched?' touched':'')
       + '" data-act="focus" data-code="'+t.code+'" style="top:'+top+'px;height:'+tall+'px"'
-      + ' title="'+esc(t.title)+'">'+esc(t.title)
-      + '<b>'+hhmmIso(t._slot.start)+'</b></div>';
+      + ' title="'+esc(t.title)+'"><span class="evt">'+esc(t.title)+'</span>'
+      + '<b>'+hhmmIso(t._slot.start)+'</b>'+ctl+'</div>';
     if(z > DEND*60) late.push(t);
   });
 
@@ -623,7 +683,9 @@ function columnHtml(day, idx, pending){
       + esc(shortTitle(t.title,5))+' '+hhmmIso(t._slot.start)+'</span>');
   });
   lateCourses.forEach(function(c){
-    lateBits.push('<span class="lt course" data-act="course" data-ci="'+c._idx+'">'
+    lateBits.push('<span class="lt course" data-act="course" data-title="'+esc(c.title)+'"'
+      + ' data-loc="'+esc(c.loc || '')+'" data-wd="'+c.weekday+'"'
+      + ' data-st="'+c.start+'" data-en="'+c.end+'">'
       + esc(shortTitle(c.title,5))+' '+c.start+'</span>');
   });
   var lateHtml = lateBits.length ? lateBits.join('')
@@ -806,16 +868,17 @@ function showCode(code, copied){
   if(ta){ ta.focus(); ta.select(); }
 }
 
-function showCourse(idx){
-  var c = COURSES[idx]; if(!c) return;
+function showCourse(ds){
   var names = ['', '周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  var weekday = parseInt(ds.wd || '1', 10);
+  var start = ds.st || '', end = ds.en || '';
   sheet.innerHTML = sheetHead()
     + '<div class="body">'
-    + '<h2>'+esc(c.title)+'</h2>'
-    + (c.loc ? '<div class="loc"><span>地点</span>'+esc(c.loc)+'</div>' : '')
+    + '<h2>'+esc(ds.title || '')+'</h2>'
+    + (ds.loc ? '<div class="loc"><span>地点</span>'+esc(ds.loc)+'</div>' : '')
     + '<div class="rows">'
-    + rowHtml('时间', names[c.weekday]+' '+c.start+'–'+c.end)
-    + rowHtml('类型', '每周固定课')
+    + rowHtml('时间', names[weekday]+' '+start+'–'+end)
+    + rowHtml('类型', '固定课')
     + '</div></div>'
     + '<div class="acts"><button data-act="close">关闭</button></div>';
   modal.hidden = false;
@@ -898,7 +961,7 @@ function toggleDone(code){
 }
 function adjust(code, delta){
   var t = findAll(code); if(!t) return;
-  var next = Math.max(15, Math.min(480, (t.estMin || 30) + delta));
+  var next = Math.max(10, Math.min(480, (t.estMin || 30) + delta));
   if(next === t.estMin){ toast('已经到上下限了'); return; }
   addOp({kind:'L', code:t.code, title:t.title, minutes:next});
   if(!modal.hidden) showModal(code);
@@ -911,20 +974,70 @@ function startPlace(code){
   render();
   toast('点日历里的一格放下');
 }
-function placeAt(grid, clientY){
-  var r = grid.getBoundingClientRect();
-  var m = (clientY - r.top) / PXMIN + DSTART*60;
-  m = Math.round(m/15) * 15;
-  m = Math.max(DSTART*60, Math.min(DEND*60 - 15, m));
-  placeSelected(grid.dataset.day, m);
+function busyIntervals(day, excludeCode){
+  var out = [];
+  coursesOf(day).forEach(function(c){ out.push([hm2min(c.start), hm2min(c.end)]); });
+  viewTasks().forEach(function(t){
+    if(t._done || t.code === excludeCode) return;
+    if(t._slot && t._slot.start && dayOfIso(t._slot.start) === day){
+      var a = minOfIso(t._slot.start);
+      var z = t._slot.end ? minOfIso(t._slot.end) : a + (t.estMin || 30);
+      out.push([a, z]);
+    }
+  });
+  out.sort(function(x, y){ return x[0] - y[0]; });
+  return out;
 }
-function placeSelected(day, minutes){
+function overlapsBusy(s, e, busy){
+  for(var i = 0; i < busy.length; i++){
+    if(busy[i][0] < e && busy[i][1] > s) return true;
+  }
+  return false;
+}
+function freeGaps(day, excludeCode){
+  var lo = DSTART*60, hi = DEND*60, gaps = [], cur = lo;
+  busyIntervals(day, excludeCode).forEach(function(b){
+    var s = Math.max(b[0], lo), e = Math.min(b[1], hi);
+    if(e <= cur) return;
+    if(s > cur) gaps.push([cur, s]);
+    cur = Math.max(cur, e);
+  });
+  if(cur < hi) gaps.push([cur, hi]);
+  return gaps;
+}
+function chooseStart(day, desired, dur, excludeCode){
+  var lo = DSTART*60, hi = DEND*60;
+  desired = Math.round(desired/30) * 30;
+  desired = Math.max(lo, Math.min(hi - Math.min(dur, hi - lo), desired));
+  var busy = busyIntervals(day, excludeCode);
+  if(!overlapsBusy(desired, desired + dur, busy) && desired + dur <= hi) return desired;
+
+  var best = null, bestD = Infinity;
+  freeGaps(day, excludeCode).forEach(function(g){
+    if(g[1] - g[0] < dur) return;
+    [g[0], g[1] - dur].forEach(function(c){
+      c = Math.round(c/5) * 5;               // 课间缝隙按 5 分钟对齐
+      if(c < lo || c + dur > hi) return;
+      if(overlapsBusy(c, c + dur, busy)) return;
+      var d = Math.abs(c - desired);
+      if(d < bestD){ bestD = d; best = c; }
+    });
+  });
+  return best;
+}
+function placeAt(grid, clientY){
+  if(!appState.sel) return;
   var t = findPending(appState.sel);
+  if(!t){ appState.sel = null; render(); return; }
+  var r = grid.getBoundingClientRect();
+  var day = grid.dataset.day;
+  var raw = (clientY - r.top) / PXMIN + DSTART*60;
+  var dur = Math.max(10, t.estMin || 30);
+  var start = chooseStart(day, raw, dur, t.code);
+  if(start == null){ toast('今天没有连续 '+dur+' 分钟的空档，换个天'); return; }
   appState.sel = null;
-  if(!t){ render(); return; }
-  var start = isoAt(day, minutes);
-  addOp({kind:'P', code:t.code, title:t.title, start:start, minutes:t.estMin || 30});
-  toast('已排到 '+md(day)+' '+pad(Math.floor(minutes/60))+':'+pad(minutes%60));
+  addOp({kind:'P', code:t.code, title:t.title, start:isoAt(day, start), minutes:dur});
+  toast('已排到 '+md(day)+' '+pad(Math.floor(start/60))+':'+pad(start%60));
 }
 function focusTask(code){
   var t = findAll(code); if(!t){ toast('这条已经不在待办了'); return; }
@@ -948,6 +1061,8 @@ function focusTask(code){
 }
 function setDrawer(open){
   app.dataset.drawer = open ? 'open' : 'mini';
+  var bg = document.getElementById('drawerbg');
+  if(bg) bg.hidden = !open;
 }
 function toggleMode(){
   var cal = app.classList.toggle('cal');
@@ -989,9 +1104,15 @@ document.addEventListener('click', function(e){
       var g = e.target.closest('.grid');
       if(g){ placeAt(g, e.clientY); return; }
     }
-    showCourse(parseInt(el.dataset.ci, 10));
+    showCourse(el.dataset);
     return;
   }
+  if(act === 'day'){
+    appState.anchor = addDays(appState.anchor, parseInt(el.dataset.d, 10));
+    render();
+    return;
+  }
+  if(act === 'today'){ appState.anchor = B.today; render(); return; }
   if(act === 'wk'){ appState.anchor = addDays(appState.anchor, parseInt(el.dataset.d,10)); render(); return; }
   if(act === 'mode'){ toggleMode(); return; }
   if(act === 'cancelsel'){ appState.sel = null; render(); return; }
@@ -1020,9 +1141,26 @@ modal.addEventListener('click', function(e){
 });
 
 /* ---------------- 启动 ---------------- */
+window.__jyApply = function(next){
+  if(!next || !next.boardId) return;
+  var oldToday = B.today;
+  B = next;
+  window.BOARD = next;
+  WEEKLY = copyList(next.courses);
+  OVERRIDES = next.overrides || {};
+  TERM_START = next.termStart || next.today;
+  TERM_WEEK = next.termWeek || 1;
+  appState.ops = loadOps();
+  if(oldToday !== next.today) appState.anchor = next.today;
+  saveOps();
+  render();
+};
+
 appState.ops = loadOps();
+saveOps();
 fitViewport();
 render();
+setDrawer(app.dataset.drawer === 'open');
 setInterval(positionNow, 30000);
 
 var resizeTimer = null;
@@ -1045,17 +1183,32 @@ document.addEventListener('visibilitychange', function(){
 </script>
 <script>
 (function(){
-  function boot(){ try{ if(window.__jyBoot) window.__jyBoot(); }
-    catch(e){ if(window.console) console.error(e); } }
-  var proto = (window.location && window.location.protocol) || 'file:';
-  if((proto === 'http:' || proto === 'https:') && window.fetch){
-    fetch('board.json?t=' + Date.now(), {cache:'no-store'})
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
-        if(d && d.boardId && (!window.BOARD || d.boardId !== window.BOARD.boardId)) window.BOARD = d;
-        boot();
-      })
-      .catch(boot);
+  var http = /^https?:$/.test((window.location && window.location.protocol) || '');
+  function fetchBoard(){
+    return fetch('board.json?t=' + Date.now(), {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; });
+  }
+  function boot(){
+    try{ if(window.__jyBoot) window.__jyBoot(); }
+    catch(e){ if(window.console) console.error(e); }
+  }
+  if(http && window.fetch){
+    fetchBoard().then(function(d){
+      if(d && d.boardId) window.BOARD = d;
+      boot();
+    }).catch(boot);
+
+    function refresh(){
+      if(document.hidden) return;
+      fetchBoard().then(function(d){
+        if(!d || !d.boardId) return;
+        if(window.BOARD && d.boardId === window.BOARD.boardId) return;
+        if(window.__jyApply) window.__jyApply(d);
+      }).catch(function(){});
+    }
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) refresh(); });
+    window.addEventListener('pageshow', refresh);
+    setInterval(refresh, 60000);
   } else { boot(); }
 })();
 </script>
