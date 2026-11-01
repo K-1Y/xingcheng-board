@@ -403,7 +403,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T22:59:11+08:00","boardId":"ee2e","syncedThrough":"2026-11-01T22:59:11+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T23:00:52+08:00","boardId":"f845","syncedThrough":"2026-11-01T23:00:52+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -1088,18 +1088,18 @@ function positionNow(){
   var m = wall(Date.now());
   var minutes = m.getUTCHours()*60 + m.getUTCMinutes();
   var lo = DSTART*60, hi = DEND*60;
-  // 超出时间轴不隐藏：早于 6:00 停在顶端，晚于 20:25 停在底线
-  var shown = Math.max(lo, Math.min(hi, minutes));
-  var y = Math.min((shown - lo) * PXMIN, (hi - lo) * PXMIN - 2);
   var nodes = document.querySelectorAll('[data-now]');
+  // 超出时间轴就整条隐藏，不钉在顶/底边，免得留下多余的红点和横线
+  if(minutes < lo || minutes > hi){
+    for(var i=0;i<nodes.length;i++){ nodes[i].style.display = 'none'; }
+    return;
+  }
+  var shown = minutes;
+  var y = (shown - lo) * PXMIN;
   for(var i=0;i<nodes.length;i++){
     var el = nodes[i];
     el.style.display = '';
     el.style.top = y+'px';
-    if(el.classList && el.classList.toggle){
-      el.classList.toggle('pin-top', minutes < lo);
-      el.classList.toggle('pin-bottom', minutes > hi);
-    }
     var lab = el.querySelector('.nowlab');
     if(lab) lab.textContent = pad(Math.floor(shown/60))+':'+pad(shown%60);
   }
