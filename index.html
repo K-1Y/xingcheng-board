@@ -100,11 +100,13 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   font-weight:600;border-left:3px solid var(--course);
   background:color-mix(in srgb,var(--course) 22%,transparent);
   display:flex;flex-direction:column;justify-content:flex-start;gap:1px}
-.course .ct{display:block;width:100%;overflow:hidden;white-space:normal;word-break:break-word}
+.course .ct{display:flex;align-items:center;width:100%;flex:1 1 50%;min-height:0;
+  overflow:hidden;white-space:normal;word-break:break-word}
 .course i{display:inline-block;font-style:normal;font-size:6px;font-weight:700;
   padding:0 2px;margin-right:2px;border-radius:2px;background:#0003;
-  color:inherit;vertical-align:1px}
-.course em{display:block;width:100%;font-style:normal;font-size:8px;font-weight:600;
+  color:inherit;vertical-align:1px;flex:none}
+.course em{display:flex;align-items:center;width:100%;flex:1 1 50%;min-height:0;
+  font-style:normal;font-size:9px;font-weight:600;line-height:1.12;
   color:var(--ink);opacity:.95;white-space:normal;word-break:break-all;overflow:hidden}
 .course.cc-red{background:#d32f2f;color:#fff;border-left-color:#8e1b1b}
 .course.cc-red em{color:#ffe6e6;opacity:1}
@@ -338,7 +340,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T20:04:46+08:00","boardId":"b4c4","syncedThrough":"2026-11-01T20:04:46+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T20:34:03+08:00","boardId":"ddbb","syncedThrough":"2026-11-01T20:34:03+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -428,6 +430,12 @@ function courseClass(title){
   if(s.indexOf('大学生心理') >= 0 || s.indexOf('思政') >= 0
      || s.indexOf('思想政治') >= 0 || s.indexOf('机器人') >= 0) return 'cc-pink';
   return '';
+}
+function courseName(title){
+  var s = String(title || '');
+  if(s.indexOf('Python') >= 0) return 'Python';
+  s = s.replace(/（[^）]*）/g, '').replace(/\([^)]*\)/g, '').trim();
+  return s || String(title || '');
 }
 function bucketOf(t, nowMs){
   var deadline = t.deadline ? Date.parse(t.deadline) : null;
@@ -697,7 +705,7 @@ function columnHtml(day, idx, pending){
       + ' data-wd="'+c.weekday+'" data-st="'+c.start+'" data-en="'+c.end+'"'
       + ' style="top:'+top+'px;height:'+ch+'px"'
       + ' title="'+esc(c.title+' '+c.start+'-'+c.end+(c.loc ? ' '+c.loc : ''))+'">'
-      + '<span class="ct"><i>课</i>'+esc(c.title)+'</span>'
+      + '<span class="ct"><i>课</i>'+esc(courseName(c.title))+'</span>'
       + '<em>'+esc(c.loc || '')+'</em></div>';
     if(z > DEND*60) lateCourses.push(c);
   });
@@ -734,7 +742,7 @@ function columnHtml(day, idx, pending){
     lateBits.push('<span class="lt course" data-act="course" data-title="'+esc(c.title)+'"'
       + ' data-loc="'+esc(c.loc || '')+'" data-wd="'+c.weekday+'"'
       + ' data-st="'+c.start+'" data-en="'+c.end+'">'
-      + esc(shortTitle(c.title,5))+' '+c.start+'</span>');
+      + esc(shortTitle(courseName(c.title),6))+' '+c.start+'</span>');
   });
   var lateHtml = lateBits.length ? lateBits.join('')
     : '<span class="lt-empty">'+esc(hhmmH(DEND))+' 之后 · 空</span>';
