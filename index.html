@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="行程">
 <meta name="theme-color" content="#161a21">
-<title>行程看板 · 2026-10-31</title>
+<title>行程看板 · 2026-11-01</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
@@ -96,16 +96,24 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 .blk i{position:absolute;top:0;left:3px;font-style:normal;font-size:7.5px;
   color:var(--dim);opacity:.85}
 .course{position:absolute;left:1px;right:1px;z-index:2;border-radius:5px;
-  padding:2px 3px;overflow:hidden;font-size:9px;line-height:1.1;color:var(--ink);
+  padding:2px 4px;overflow:hidden;font-size:9px;line-height:1.12;color:var(--ink);
   font-weight:600;border-left:3px solid var(--course);
   background:color-mix(in srgb,var(--course) 22%,transparent);
-  display:flex;flex-direction:column;justify-content:space-between;gap:0}
-.course .ct{display:block;overflow:hidden}
+  display:flex;flex-direction:column;justify-content:flex-start;gap:1px}
+.course .ct{display:block;width:100%;overflow:hidden;white-space:normal;word-break:break-word}
 .course i{display:inline-block;font-style:normal;font-size:6px;font-weight:700;
-  padding:0 2px;margin-right:2px;border-radius:2px;background:var(--course);
-  color:#10131a;vertical-align:1px}
-.course em{display:block;font-style:normal;font-size:8px;font-weight:600;
-  color:var(--ink);opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  padding:0 2px;margin-right:2px;border-radius:2px;background:#0003;
+  color:inherit;vertical-align:1px}
+.course em{display:block;width:100%;font-style:normal;font-size:8px;font-weight:600;
+  color:var(--ink);opacity:.95;white-space:normal;word-break:break-all;overflow:hidden}
+.course.cc-red{background:#d32f2f;color:#fff;border-left-color:#8e1b1b}
+.course.cc-red em{color:#ffe6e6;opacity:1}
+.course.cc-pink{background:#ec407a;color:#fff;border-left-color:#ad1457}
+.course.cc-pink em{color:#ffe3ee;opacity:1}
+.course.cc-light{background:#ffcdd2;color:#6d1b1b;border-left-color:#e57373}
+.course.cc-light em{color:#8e2424;opacity:1}
+.course.cc-pale{background:#fff5f5;color:#a61b1b;border-left-color:#ef9a9a}
+.course.cc-pale em{color:#b32424;opacity:1}
 .lt.course{border-left-color:var(--course)}
 .ev{position:absolute;left:2px;right:2px;z-index:3;border-radius:5px;padding:2px 4px;
   font-size:9px;line-height:1.1;overflow:hidden;cursor:pointer;
@@ -297,7 +305,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <header class="hdr">
     <span class="logo">行程</span>
     <button class="hbtn nav" data-act="day" data-d="-1" aria-label="前一天">‹</button>
-    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-10-31</span>
+    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-11-01</span>
     <button class="hbtn nav" data-act="day" data-d="1" aria-label="后一天">›</button>
     <span class="hnav">
       <button data-act="wk" data-d="-7" aria-label="上一周">−</button>
@@ -330,7 +338,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-10-31","generatedAt":"2026-10-31T11:29:59+08:00","boardId":"feb1","syncedThrough":"2026-10-31T11:29:59+08:00","stats":{"total":2,"pending":0,"doneToday":2,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[{"taskId":"t_7ad196d1","title":"我 也要去二教开会","deadline":"2026-10-29T15:00:00+08:00","slot":{"start":"2026-11-02T17:30:00+08:00","end":"2026-11-02T18:45:00+08:00"},"window":null,"weight":2,"estMin":75,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:45:18+08:00","status":"done","doneAt":"2026-10-31T11:12:03+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-10-31T11:11:23+08:00","reason":"user_place","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_7ac96529","title":"二教开会","deadline":"2026-10-28T15:00:00+08:00","slot":{"start":"2026-10-28T15:00:00+08:00","end":"2026-10-28T16:00:00+08:00"},"window":null,"weight":2,"estMin":60,"loc":"二教","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"createdAt":"2026-10-27T08:36:21+08:00","status":"done","doneAt":"2026-10-31T11:11:23+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"}],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T20:04:46+08:00","boardId":"b4c4","syncedThrough":"2026-11-01T20:04:46+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -359,7 +367,8 @@ var hdt = document.getElementById('hdt');
 var wk = document.getElementById('wk');
 var boardver = document.getElementById('boardver');
 var toastEl = document.getElementById('toast');
-var appState = {ops:[], anchor:B.today, sel:null, lastCode:'', storageOk:true,
+var TODAY = dayOfMs(Date.now());
+var appState = {ops:[], anchor:TODAY, sel:null, lastCode:'', storageOk:true,
   toastTimer:null, pulse:null};
 var HOURS = []; for (var h = DSTART; h <= DEND; h++) HOURS.push(h);
 
@@ -411,8 +420,45 @@ function coursesOf(day){
     return !c.weeks || !c.weeks.length || c.weeks.indexOf(week) >= 0;
   });
 }
+function courseClass(title){
+  var s = String(title || '');
+  if(s.indexOf('化工报国') >= 0) return 'cc-pale';
+  if(s.indexOf('高等数学') >= 0 || s.indexOf('高数') >= 0 || s.indexOf('Python') >= 0) return 'cc-light';
+  if(s.indexOf('英语') >= 0 || s.indexOf('制图') >= 0 || s.indexOf('工程图学') >= 0) return 'cc-red';
+  if(s.indexOf('大学生心理') >= 0 || s.indexOf('思政') >= 0
+     || s.indexOf('思想政治') >= 0 || s.indexOf('机器人') >= 0) return 'cc-pink';
+  return '';
+}
+function bucketOf(t, nowMs){
+  var deadline = t.deadline ? Date.parse(t.deadline) : null;
+  if(deadline && deadline < nowMs) return 'overdue';
+
+  var anchor = null;
+  if(t.deadline) anchor = dayOfIso(t.deadline);
+  else if(t._slot && t._slot.start) anchor = dayOfIso(t._slot.start);
+  else if(t.window && t.window.start) anchor = dayOfIso(t.window.start);
+
+  if(t.big) return (anchor && anchor <= TODAY) ? 'today' : 'countdown';
+
+  if(anchor){
+    var diff = daysBetween(anchor, TODAY);
+    if(diff <= 0) return 'today';
+    if(diff === 1) return 'tomorrow';
+    if(diff === 2) return 'dayAfter';
+    if(diff <= 7) return 'week';
+    return 'backlog';
+  }
+  if(t.window && t.window.start && t.window.end){
+    var ws = dayOfIso(t.window.start), we = dayOfIso(t.window.end);
+    if(ws <= TODAY && TODAY <= we) return 'today';
+    if(ws <= addDays(TODAY,1) && addDays(TODAY,1) <= we) return 'tomorrow';
+    if(ws <= addDays(TODAY,2) && addDays(TODAY,2) <= we) return 'dayAfter';
+    if(we <= addDays(TODAY,7)) return 'week';
+  }
+  return 'backlog';
+}
 function dayLabel(key){
-  var diff = daysBetween(key, B.today);
+  var diff = daysBetween(key, TODAY);
   if(diff === 0) return '今天';
   if(diff === 1) return '明天';
   if(diff === 2) return '后天';
@@ -581,6 +627,8 @@ function render(){
   var all = viewTasks();
   var pending = all.filter(function(t){ return !t._done; });
   var done = all.filter(function(t){ return t._done; });
+  var nowMs = Date.now();
+  pending.forEach(function(t){ t.bucket = bucketOf(t, nowMs); });
 
   hdt.textContent = md(appState.anchor)+' 周'+WD[weekdayOf(appState.anchor)]+' · '+pending.length+' 项';
   wk.textContent = weekLabel(appState.anchor);
@@ -644,7 +692,7 @@ function columnHtml(day, idx, pending){
     var top = Math.max(0, (a - DSTART*60) * PXMIN);
     var bottom = Math.min(DEND*60, Math.max(z, a + 15));
     var ch = Math.max(18, (bottom - Math.max(a, DSTART*60)) * PXMIN);
-    gh += '<div class="course" data-act="course"'
+    gh += '<div class="course '+courseClass(c.title)+'" data-act="course"'
       + ' data-title="'+esc(c.title)+'" data-loc="'+esc(c.loc || '')+'"'
       + ' data-wd="'+c.weekday+'" data-st="'+c.start+'" data-en="'+c.end+'"'
       + ' style="top:'+top+'px;height:'+ch+'px"'
@@ -785,7 +833,7 @@ function renderBigbar(pending){
   var big = pending.filter(function(t){ return t.bucket === 'countdown'; });
   if(!big.length){ bigbar.innerHTML = '<span class="bigtag empty">大事倒计时 · 暂无</span>'; return; }
   bigbar.innerHTML = '<span class="bigtag">大事 '+big.length+'</span>' + big.map(function(t){
-    var left = t.deadline ? daysBetween(dayOfIso(t.deadline), B.today) : null;
+    var left = t.deadline ? daysBetween(dayOfIso(t.deadline), TODAY) : null;
     return '<span class="bigtag">'+esc(t.title)+' · '
       + (left == null ? '待定' : '<b>'+left+'</b> 天')+'</span>';
   }).join('');
@@ -804,6 +852,14 @@ function renderSel(){
 
 /* ---------------- 红线 ---------------- */
 function positionNow(){
+  var liveDay = dayOfMs(Date.now());
+  if(liveDay !== TODAY){
+    var wasToday = appState.anchor === TODAY;
+    TODAY = liveDay;
+    if(wasToday) appState.anchor = TODAY;
+    render();
+    return;
+  }
   var m = wall(Date.now());
   var minutes = m.getUTCHours()*60 + m.getUTCMinutes();
   var ok = minutes >= DSTART*60 && minutes <= DEND*60;
@@ -1046,7 +1102,7 @@ function focusTask(code){
   else if(t.deadline) day = dayOfIso(t.deadline);
   else if(t.window && t.window.start) day = dayOfIso(t.window.start);
   var span = [appState.anchor, addDays(appState.anchor,1), addDays(appState.anchor,2)];
-  if(day && span.indexOf(day) < 0 && Math.abs(daysBetween(day, B.today)) < 60){
+  if(day && span.indexOf(day) < 0 && Math.abs(daysBetween(day, TODAY)) < 60){
     appState.anchor = day;
     render();
   }
@@ -1112,7 +1168,7 @@ document.addEventListener('click', function(e){
     render();
     return;
   }
-  if(act === 'today'){ appState.anchor = B.today; render(); return; }
+  if(act === 'today'){ appState.anchor = TODAY; render(); return; }
   if(act === 'wk'){ appState.anchor = addDays(appState.anchor, parseInt(el.dataset.d,10)); render(); return; }
   if(act === 'mode'){ toggleMode(); return; }
   if(act === 'cancelsel'){ appState.sel = null; render(); return; }
@@ -1143,7 +1199,7 @@ modal.addEventListener('click', function(e){
 /* ---------------- 启动 ---------------- */
 window.__jyApply = function(next){
   if(!next || !next.boardId) return;
-  var oldToday = B.today;
+  TODAY = dayOfMs(Date.now());
   B = next;
   window.BOARD = next;
   WEEKLY = copyList(next.courses);
@@ -1151,11 +1207,13 @@ window.__jyApply = function(next){
   TERM_START = next.termStart || next.today;
   TERM_WEEK = next.termWeek || 1;
   appState.ops = loadOps();
-  if(oldToday !== next.today) appState.anchor = next.today;
+  appState.anchor = TODAY;
   saveOps();
   render();
 };
 
+TODAY = dayOfMs(Date.now());
+appState.anchor = TODAY;
 appState.ops = loadOps();
 saveOps();
 fitViewport();
