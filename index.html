@@ -59,9 +59,8 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   box-shadow:0 -2px 0 var(--red)}
 .rl{position:absolute;right:3px;left:auto;text-align:right;font-size:10px;
   line-height:1;color:var(--dim);transform:translateY(-6px);font-variant-numeric:tabular-nums}
-.nowdot{position:absolute;left:2px;width:7px;height:7px;border-radius:50%;
-  background:var(--red);transform:translateY(-3px);z-index:9;
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 25%,transparent)}
+.nowdot{position:absolute;right:0;left:auto;width:12px;height:2px;border-radius:1px;
+  background:var(--red);transform:translateY(-1px);z-index:9}
 .col{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line);
   position:relative}
 .col:last-child{border-right:0}
@@ -403,7 +402,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T23:03:08+08:00","boardId":"c97a","syncedThrough":"2026-11-01T23:03:08+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T23:05:21+08:00","boardId":"b522","syncedThrough":"2026-11-01T23:05:21+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -1088,17 +1087,12 @@ function positionNow(){
   var m = wall(Date.now());
   var minutes = m.getUTCHours()*60 + m.getUTCMinutes();
   var lo = DSTART*60, hi = DEND*60;
-  var inRange = minutes >= lo && minutes <= hi;
-  // 超出时间轴：线钉在顶/底边，只把圆点藏起来
+  // 超出时间轴：线钉在顶/底边，时间轴右端那一小段红线也一起保留
   var shown = Math.max(lo, Math.min(hi, minutes));
   var y = Math.min((shown - lo) * PXMIN, (hi - lo) * PXMIN - 2);
   var nodes = document.querySelectorAll('[data-now]');
   for(var i=0;i<nodes.length;i++){
     var el = nodes[i];
-    if(!inRange && el.classList.contains('nowdot')){
-      el.style.display = 'none';
-      continue;
-    }
     el.style.display = '';
     el.style.top = y+'px';
     if(el.classList && el.classList.toggle){
