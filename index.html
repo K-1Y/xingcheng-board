@@ -14,7 +14,7 @@
 :root{
   --bg:#0f1115;--panel:#161a21;--panel2:#1d222b;--ink:#e8ebf0;--dim:#8b94a3;--line:#252b36;
   --study:#4f8cff;--play:#f0a020;--life:#2dd4a7;--other:#a78bfa;--course:#8fa0c4;
-  --red:#ff4d4f;--hot:#ff6b6b;--hh:46px;--head:40px;--strip:26px;
+  --red:#ff4d4f;--hot:#ff6b6b;--gold:#f5c542;--hh:46px;--head:40px;--strip:26px;
   --bar:calc(32px + env(safe-area-inset-bottom));
 }
 @media (prefers-color-scheme: light){
@@ -44,23 +44,28 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 .hbtn.on{background:var(--study);border-color:var(--study);color:#08111f;font-weight:700}
 
 /* ---------- 四列日历 ---------- */
-.board{flex:1;min-height:0;display:grid;grid-template-columns:26px 1.30fr .90fr .72fr;
+.board{flex:1;min-height:0;display:grid;grid-template-columns:34px 1.30fr .90fr .72fr;
   overflow:hidden;overscroll-behavior:none;
   transition:grid-template-columns .28s cubic-bezier(.2,.7,.2,1)}
-.board[data-expand="d0"]{grid-template-columns:26px 1.78fr .78fr .62fr}
-.board[data-expand="d1"]{grid-template-columns:26px 1.02fr 1.74fr .62fr}
-.board[data-expand="d2"]{grid-template-columns:26px 1.02fr .62fr 1.74fr}
-.rail{position:relative;border-right:1px solid var(--line)}
+.board[data-expand="d0"]{grid-template-columns:34px 1.78fr .78fr .62fr}
+.board[data-expand="d1"]{grid-template-columns:34px 1.02fr 1.74fr .62fr}
+.board[data-expand="d2"]{grid-template-columns:34px 1.02fr .62fr 1.74fr}
+.rail{position:relative;border-right:1px solid var(--line);
+  box-shadow:inset -2px 0 0 var(--red)}
 .rail-head{height:var(--head);position:sticky;top:0;z-index:8;background:var(--panel)}
 .rail-pad{height:var(--strip);background:var(--panel);border-bottom:1px solid var(--line)}
-.rail-body{position:relative;height:var(--gh,552px);background:var(--panel)}
-.rl{position:absolute;left:2px;font-size:8px;color:var(--dim);transform:translateY(-5px)}
+.rail-body{position:relative;height:var(--gh,552px);background:var(--panel);
+  box-shadow:0 -2px 0 var(--red)}
+.rl{position:absolute;right:3px;left:auto;text-align:right;font-size:10px;
+  line-height:1;color:var(--dim);transform:translateY(-6px);font-variant-numeric:tabular-nums}
 .nowdot{position:absolute;left:2px;width:7px;height:7px;border-radius:50%;
   background:var(--red);transform:translateY(-3px);z-index:9;
   box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 25%,transparent)}
 .col{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line);
   position:relative}
 .col:last-child{border-right:0}
+.col.wide .course .ct{flex:0 0 34%;font-size:8px}
+.col.wide .course em{flex:1 1 66%;font-size:11px;line-height:1.08}
 .dhead{height:var(--head);position:sticky;top:0;z-index:8;background:var(--panel);
   padding:3px 4px 2px;cursor:pointer;border-bottom:1px solid var(--line);
   display:flex;flex-direction:column;justify-content:center;user-select:none}
@@ -75,6 +80,8 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
   background:var(--panel);scrollbar-width:none;flex:none}
 .strip::-webkit-scrollbar{display:none}
 .strip.empty{color:var(--dim);font-size:8px;justify-content:center}
+.stripstat{flex:none;font-size:8px;color:var(--dim);padding:0 2px;white-space:nowrap}
+.stripstat.full{color:var(--gold);font-weight:800}
 .chip{flex:none;font-size:8.5px;line-height:1.6;padding:0 4px;border-radius:4px;
   border:1px solid var(--line);border-left-width:2px;color:var(--ink);
   background:var(--panel2);white-space:nowrap;max-width:78px;overflow:hidden;
@@ -84,6 +91,7 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 .cat-life{border-left-color:var(--life)}
 .cat-other{border-left-color:var(--other)}
 .grid{position:relative;height:var(--gh,552px);flex:none;
+  box-shadow:0 -2px 0 var(--red);
   background:repeating-linear-gradient(to bottom,
     transparent 0 calc(var(--hh,46px)/2 - 1px),
     color-mix(in srgb,var(--line) 45%,transparent) calc(var(--hh,46px)/2 - 1px) calc(var(--hh,46px)/2),
@@ -340,7 +348,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T20:34:03+08:00","boardId":"ddbb","syncedThrough":"2026-11-01T20:34:03+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-01","generatedAt":"2026-11-01T20:46:07+08:00","boardId":"c238","syncedThrough":"2026-11-01T20:46:07+08:00","stats":{"total":2,"pending":0,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"today":0,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[],"big":[],"trash":[],"review":[],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -669,7 +677,7 @@ function railHtml(){
   var out = '<div class="rail"><div class="rail-head"></div><div class="rail-pad"></div>';
   out += '<div class="rail-body" style="height:'+GRIDH+'px">';
   HOURS.forEach(function(h){
-    out += '<span class="rl" style="top:'+((h-DSTART)*HOUR-5)+'px">'+h+'</span>';
+    out += '<span class="rl" style="top:'+((h-DSTART)*HOUR-5)+'px">'+h+':00</span>';
   });
   out += '<span class="rl" style="top:'+(GRIDH-7)+'px">'+hhmmH(DEND)+'</span>';
   out += '<span class="nowdot" data-now style="display:none"></span></div></div>';
@@ -747,12 +755,12 @@ function columnHtml(day, idx, pending){
   var lateHtml = lateBits.length ? lateBits.join('')
     : '<span class="lt-empty">'+esc(hhmmH(DEND))+' 之后 · 空</span>';
 
-  var strip = loose.length
-    ? loose.map(function(t){
-        return '<span class="chip '+catClass(t.category)+'" data-act="focus" data-code="'+t.code+'"'
-          + ' title="'+esc(t.title)+'">'+esc(shortTitle(t.title,6))+'</span>';
-      }).join('')
-    : '';
+  var full = freeMinutes(day) < 120;
+  var stat = '<span class="stripstat'+(full?' full':'')+'">'+(full?'排满':'待排')+'</span>';
+  var strip = stat + loose.map(function(t){
+    return '<span class="chip '+catClass(t.category)+'" data-act="focus" data-code="'+t.code+'"'
+      + ' title="'+esc(t.title)+'">'+esc(shortTitle(t.title,6))+'</span>';
+  }).join('');
 
   var expanded = board.dataset.expand === ('d'+idx);
   var head = '<div class="dhead" data-act="expand" data-day="'+idx+'">'
@@ -760,8 +768,8 @@ function columnHtml(day, idx, pending){
     + '<span class="dd">'+md(day)+' 周'+WD[weekdayOf(day)]+(items.length?' · '+items.length:'')
     + '</span><span class="dexp">'+(expanded?'⇤':'⤢')+'</span></div>';
 
-  return '<section class="col" data-day="'+idx+'">'+head
-    + '<div class="strip'+(strip?'':' empty')+'">'+(strip || '待排')+'</div>'
+  return '<section class="col'+(expanded?' wide':'')+'" data-day="'+idx+'">'+head
+    + '<div class="strip">'+strip+'</div>'
     + '<div class="grid'+(appState.sel?' placing':'')+'" data-day="'+day+'" data-idx="'+idx+'">'
     + gh+'</div>'
     + '<div class="late">'+lateHtml+'</div></section>';
@@ -1068,6 +1076,11 @@ function freeGaps(day, excludeCode){
   });
   if(cur < hi) gaps.push([cur, hi]);
   return gaps;
+}
+function freeMinutes(day){
+  var total = 0;
+  freeGaps(day, null).forEach(function(g){ total += Math.max(0, g[1] - g[0]); });
+  return total;
 }
 function chooseStart(day, desired, dur, excludeCode){
   var lo = DSTART*60, hi = DEND*60;
