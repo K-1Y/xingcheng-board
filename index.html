@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="行程">
 <meta name="theme-color" content="#161a21">
-<title>行程看板 · 2026-11-06</title>
+<title>行程看板 · 2026-11-07</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
@@ -98,11 +98,11 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
     transparent calc(var(--hh,46px)/2) var(--hh,46px)),
     repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px var(--hh,46px)),
     var(--panel)}
-.blk{position:absolute;left:1px;right:1px;border-radius:4px;pointer-events:none;z-index:1}
-.blk.study{background:color-mix(in srgb,var(--study) 16%,transparent)}
-.blk.play{background:color-mix(in srgb,var(--play) 16%,transparent)}
-.blk i{position:absolute;top:0;left:3px;font-style:normal;font-size:7.5px;
-  color:var(--dim);opacity:.85}
+.blk{position:absolute;left:0;right:0;pointer-events:none;z-index:0}
+.blk.study{background:color-mix(in srgb,var(--study) 12%,transparent)}
+.blk.life{background:color-mix(in srgb,var(--play) 14%,transparent)}
+.blk i{position:absolute;top:2px;left:4px;font-style:normal;font-size:8px;letter-spacing:1px;
+  color:color-mix(in srgb,var(--ink) 50%,transparent)}
 .course{position:absolute;left:1px;right:1px;z-index:2;border-radius:5px;
   padding:2px 4px;overflow:hidden;font-size:9px;line-height:1.12;color:var(--ink);
   font-weight:600;border-left:3px solid var(--course);
@@ -155,6 +155,9 @@ body{margin:0;position:fixed;inset:0;background:var(--bg);color:var(--ink);
 .lt{flex:none;font-size:7.5px;padding:0 4px;border-radius:3px;background:var(--panel2);
   border-left:2px solid var(--cat);white-space:nowrap;color:var(--ink)}
 .lt-empty{font-size:7.5px;color:var(--dim)}
+.lt-cell{width:100%;text-align:left;font-size:8.5px;color:var(--dim);padding:2px 3px;
+  border:1px dashed var(--line);border-radius:4px;background:none}
+.lt-cell.has{color:var(--ink);border-color:color-mix(in srgb,var(--study) 45%,var(--line))}
 .grid.placing{outline:1px dashed var(--study);outline-offset:-2px;
   background-color:color-mix(in srgb,var(--study) 6%,transparent)}
 
@@ -299,6 +302,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
 .sheet .row i{flex:none;width:48px;font-style:normal;font-size:11px;color:var(--dim)}
 .sheet .row b{min-width:0;font-weight:500;color:var(--ink);word-break:break-all}
 .sheet .acts{flex:none;display:flex;gap:8px;flex-wrap:wrap;padding-top:10px}
+.sheet .acts.two button{flex:1 1 46%;min-width:46%}
 .sheet .acts button{flex:1;min-width:68px;padding:10px 6px;border-radius:9px;
   border:1px solid var(--line);background:var(--panel2);color:var(--ink);font-size:12px}
 .sheet .acts button.primary{background:var(--study);border-color:var(--study);
@@ -320,6 +324,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
 .fchip.slot{min-width:54px;text-align:center;padding:7px 8px}
 .fchip.slot.busy{border-color:#ef9a9a;color:#ef9a9a}
 .fchip.slot.past{opacity:.32}
+.fchip.slot.late{border-style:dashed;color:var(--dim)}
 .fwarn{margin-top:10px;font-size:11px;line-height:1.55;color:#ffb4b4;
   background:#5a1e1e55;border:1px solid #ff4d4f55;border-radius:8px;padding:7px 9px}
 .fwarn[hidden]{display:none}
@@ -410,7 +415,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <header class="hdr">
     <span class="logo">行程</span>
     <button class="hbtn nav" data-act="day" data-d="-1" aria-label="前一天">‹</button>
-    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-11-06</span>
+    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-11-07</span>
     <button class="hbtn nav" data-act="day" data-d="1" aria-label="后一天">›</button>
     <span class="hnav">
       <button data-act="wk" data-d="-7" aria-label="上一周">−</button>
@@ -420,7 +425,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
     <button class="hbtn" data-act="mode">日历</button>
   </header>
   <div id="board" class="board" data-expand="none"></div>
-  <div id="minibar" class="minibar" data-act="drawer"></div>
+  <div id="minibar" class="minibar"></div>
   <div id="drawerbg" class="drawerbg" data-act="drawer" hidden></div>
   <aside id="drawer" class="drawer" aria-label="任务栏">
     <div class="dtop">
@@ -428,6 +433,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
       <span class="ver" id="boardver"></span>
       <span class="dacts">
         <button class="addbtn" data-act="add" aria-label="添加任务">＋</button>
+        <button data-act="blk">生活时间</button>
         <button data-act="recopy">上次码</button>
         <button data-act="drawer">收起</button>
       </span>
@@ -445,7 +451,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-06","generatedAt":"2026-11-06T18:19:34+08:00","boardId":"871b","syncedThrough":"2026-11-06T18:19:34+08:00","stats":{"total":40,"pending":13,"doneToday":10,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"todo":7,"today":3,"tomorrow":3,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[{"taskId":"t_cfd70448","title":"制作中转站","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0448"},{"taskId":"t_aed7e054","title":"数学中值定理网课","deadline":null,"slot":null,"window":{"start":"2026-11-08T04:00:00+08:00","end":"2026-11-08T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"e054"},{"taskId":"t_89706926","title":"雨课堂插件","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"6926"},{"taskId":"t_ea0b0675","title":"制作练枪地图","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0675"},{"taskId":"t_c0c653a3","title":"英语成功演讲","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-04T21:44:27+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"53a3"},{"taskId":"t_caa9fb3b","title":"Python课作业","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"fb3b"},{"taskId":"t_f7389db9","title":"高数线上测试","deadline":null,"slot":null,"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"9db9"},{"taskId":"t_1ec5c2f1","title":"改ui","deadline":null,"slot":{"start":"2026-11-06T19:00:00+08:00","end":"2026-11-06T19:45:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"life","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"today","code":"c2f1"},{"taskId":"t_cf25de0c","title":"规划出门路程","deadline":null,"slot":{"start":"2026-11-06T19:55:00+08:00","end":"2026-11-06T20:25:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"de0c"},{"taskId":"t_e4ee59e9","title":"学费减免","deadline":null,"slot":{"start":"2026-11-06T18:30:00+08:00","end":"2026-11-06T19:00:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"59e9"},{"taskId":"t_c077cb44","title":"看完Python网课","deadline":null,"slot":{"start":"2026-11-07T06:00:00+08:00","end":"2026-11-07T06:45:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-05T22:53:00+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"cb44"},{"taskId":"t_ef02d970","title":"周末出门彩票","deadline":null,"slot":{"start":"2026-11-07T19:55:00+08:00","end":"2026-11-07T20:25:00+08:00"},"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-05T18:01:22+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"tomorrow","code":"d970"},{"taskId":"t_22e0d056","title":"制图网课","deadline":null,"slot":{"start":"2026-11-07T06:45:00+08:00","end":"2026-11-07T07:15:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-05T22:53:00+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"d056"}],"big":[],"trash":[{"taskId":"t_e73e7479","title":"思政中国慕课截图","deadline":null,"slot":{"start":"2026-11-07T07:15:00+08:00","end":"2026-11-07T07:45:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T17:40:06+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_7659d8bb","title":"北化在线测试思政","deadline":null,"slot":{"start":"2026-11-07T07:45:00+08:00","end":"2026-11-07T08:15:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T17:40:06+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_13a2b953","title":"投票","deadline":null,"slot":{"start":"2026-11-06T20:00:00+08:00","end":"2026-11-06T21:00:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":60,"loc":null,"tags":[],"src":null,"category":"life","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":"体育馆","createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T17:40:06+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_7e812443","title":"高数考试","deadline":null,"slot":{"start":"2026-11-06T18:00:00+08:00","end":"2026-11-06T19:00:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":60,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":"带考试用具","createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"},{"taskId":"t_34fa206e","title":"高数准备","deadline":null,"slot":{"start":"2026-11-07T08:15:00+08:00","end":"2026-11-07T08:45:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T17:40:06+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_64c27c7b","title":"思政中国慕课截图","deadline":null,"slot":{"start":"2026-11-07T08:45:00+08:00","end":"2026-11-07T09:15:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"done","doneAt":"2026-11-06T18:19:34+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T17:40:06+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_09e5dd18","title":"ai","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":"1改色块(到9.45)2ai规则3回归我的任务","createdAt":"2026-11-06T08:13:30+08:00","status":"done","doneAt":"2026-11-06T08:13:30+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"},{"taskId":"t_e06f2c75","title":"ui/机器人增强","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":"|ui 增加对任务重新编辑的功能/机器人 识别相同指令能力","tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"createdAt":"2026-11-05T06:44:48+08:00","status":"done","doneAt":"2026-11-06T06:01:24+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"},{"taskId":"t_16e48ab7","title":"改ui","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":"没法在8.25之后设定任务","createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T06:01:24+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T06:01:24+08:00","reason":"user_todo","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_f5a1738e","title":"改ui","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":"没法重新编辑任务/没法将任务重叠","createdAt":"2026-11-05T12:43:43+08:00","status":"done","doneAt":"2026-11-06T06:01:24+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T06:01:24+08:00","reason":"user_todo","by":"user"},"stale":false,"trashState":"done"}],"review":[],"fitness":{"2026-11-05":1},"applied":["444c","95e3","2add","29f7","c439","cb95","5ace","5acd","2c7b","9e77","be64","5ecb","004b","8d7a","514c","10f1","25bc","2b7e","9db4","f43d","af95"],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{"10":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语读写","weekday":2,"start":"08:00","end":"09:35","loc":"二教C-405"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"11":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"二教C-405"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"},{"title":"思想政治理论课-5","weekday":5,"start":"10:40","end":"12:15","loc":"二教C-306"}]},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-07","generatedAt":"2026-11-07T11:52:08+08:00","boardId":"859a","syncedThrough":"2026-11-07T11:52:08+08:00","stats":{"total":40,"pending":13,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"todo":6,"today":4,"tomorrow":3,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[{"taskId":"t_cfd70448","title":"制作中转站","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0448"},{"taskId":"t_89706926","title":"雨课堂插件","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"6926"},{"taskId":"t_ea0b0675","title":"制作练枪地图","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0675"},{"taskId":"t_c0c653a3","title":"英语成功演讲","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T21:44:27+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"53a3"},{"taskId":"t_caa9fb3b","title":"Python课作业","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"fb3b"},{"taskId":"t_f7389db9","title":"高数线上测试","deadline":null,"slot":null,"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"9db9"},{"taskId":"t_1ec5c2f1","title":"改ui","deadline":null,"slot":{"start":"2026-11-07T20:25:00+08:00","end":"2026-11-07T21:10:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"life","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:46:55+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"today","code":"c2f1"},{"taskId":"t_ef02d970","title":"周末出门彩票","deadline":null,"slot":{"start":"2026-11-07T19:55:00+08:00","end":"2026-11-07T20:25:00+08:00"},"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-05T18:01:22+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"d970"},{"taskId":"t_cf25de0c","title":"规划出门路程","deadline":null,"slot":{"start":"2026-11-06T19:55:00+08:00","end":"2026-11-06T20:25:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"de0c"},{"taskId":"t_e4ee59e9","title":"学费减免","deadline":null,"slot":{"start":"2026-11-06T18:30:00+08:00","end":"2026-11-06T19:00:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"59e9"},{"taskId":"t_c077cb44","title":"看完Python网课","deadline":null,"slot":{"start":"2026-11-08T06:45:00+08:00","end":"2026-11-08T07:30:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:46:55+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"cb44"},{"taskId":"t_aed7e054","title":"数学中值定理网课","deadline":null,"slot":{"start":"2026-11-08T06:00:00+08:00","end":"2026-11-08T06:45:00+08:00"},"window":{"start":"2026-11-08T04:00:00+08:00","end":"2026-11-08T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:46:55+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"e054"},{"taskId":"t_22e0d056","title":"制图网课","deadline":null,"slot":{"start":"2026-11-08T07:30:00+08:00","end":"2026-11-08T08:00:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:46:55+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"d056"}],"big":[],"trash":[],"review":[],"fitness":{"2026-11-05":1},"applied":["444c","95e3","2add","29f7","c439","cb95","5ace","5acd","2c7b","9e77","be64","5ecb","004b","8d7a","514c","10f1","25bc","2b7e","9db4","f43d","af95","9a12"],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{"10":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语读写","weekday":2,"start":"08:00","end":"09:35","loc":"二教C-405"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"11":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"二教C-405"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"},{"title":"思想政治理论课-5","weekday":5,"start":"10:40","end":"12:15","loc":"二教C-306"}]},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -661,7 +667,8 @@ function dedupeOps(list){
   Object.keys(byCode).forEach(function(code){
     var arr = byCode[code].sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
     var lastNew = null, lastDone = null, lastLen = null;
-    var lastPlace = null, lastTodo = null, lastDrop = null, lastFit = null;
+    var lastPlace = null, lastTodo = null, lastDrop = null, lastFit = null, lastEdit = null;
+    var lastBlock = null;
     arr.forEach(function(o){
       if(o.kind === 'N') lastNew = o;
       else if(o.kind === 'D' || o.kind === 'U') lastDone = o;
@@ -670,9 +677,12 @@ function dedupeOps(list){
       else if(o.kind === 'S') lastTodo = o;
       else if(o.kind === 'X') lastDrop = o;
       else if(o.kind === 'F') lastFit = o;
+      else if(o.kind === 'E') lastEdit = o;
+      else if(o.kind === 'B' || o.kind === 'RB') lastBlock = o;
     });
     if(lastNew) out.push(lastNew);          // 草稿的新建指令必须保留
     if(lastFit) out.push(lastFit);          // 健身打卡：同一天只发最后一次
+    if(lastBlock) out.push(lastBlock);      // 同一个生活时间块只发最后一次
     if(lastDrop){ out.push(lastDrop); return; }
     if(lastDone){
       out.push(lastDone);
@@ -682,7 +692,12 @@ function dedupeOps(list){
       }
       return;
     }
-    if(lastLen) out.push(lastLen);
+    // 编辑已经带了时长，比 L 新就只发编辑
+    if(lastEdit && (!lastLen || (lastEdit.at || 0) >= (lastLen.at || 0))) out.push(lastEdit);
+    else {
+      if(lastLen) out.push(lastLen);
+      if(lastEdit) out.push(lastEdit);
+    }
     var slotOp = null;
     if(lastPlace && lastTodo) slotOp = (lastPlace.at >= lastTodo.at) ? lastPlace : lastTodo;
     else slotOp = lastPlace || lastTodo;
@@ -774,6 +789,13 @@ function viewTasks(){
     } else if(op.kind === 'P'){
       t._slot = {start:op.start, end:shift(op.start, op.minutes)};
       t.block = (t.category === 'study' || t.category === 'play') ? t.category : null;
+    } else if(op.kind === 'E'){
+      if(op.title) t.title = op.title;
+      if(op.category) t.category = op.category;
+      if(op.note !== undefined) t.note = op.note || null;
+      if(op.loc !== undefined) t.loc = op.loc || null;
+      if(op.minutes) t.estMin = op.minutes;
+      if(t._slot && op.minutes){ t._slot = {start:t._slot.start, end:shift(t._slot.start, op.minutes)}; }
     } else if(op.kind === 'S'){
       t._slot = null;
       t.block = null;
@@ -819,13 +841,34 @@ function addOp(op){
 }
 
 /* ---------------- 布局计算 ---------------- */
+function localBlocks(){
+  var byId = {};
+  (B.blocks||[]).forEach(function(b){
+    var id = b.blockId || ('b_'+b.weekday+'_'+b.start+'_'+b.end);
+    byId[id] = {blockId:id, weekday:b.weekday, start:b.start, end:b.end, kind:b.kind};
+  });
+  appState.ops.forEach(function(o){
+    if(o.kind === 'B'){
+      byId[o.code] = {blockId:o.code, weekday:o.weekday, start:o.start, end:o.end, kind:o.blockKind};
+    } else if(o.kind === 'RB'){
+      delete byId[o.code];
+    }
+  });
+  return Object.keys(byId).map(function(k){ return byId[k]; });
+}
 function blocksOf(day){
   var wd = ((weekdayOf(day)+6)%7)+1;
-  return (B.blocks||[]).filter(function(b){
-    return (b.weekdays||[]).indexOf(wd) >= 0;
-  }).map(function(b){
-    return {start:hm2min(b.start), end:hm2min(b.end), kind:b.kind, label:b.label};
+  var out = localBlocks().filter(function(b){ return b.weekday === wd; }).map(function(b){
+    return {start:hm2min(b.start), end:hm2min(b.end), kind:b.kind,
+            label:(b.kind === 'study' ? '学' : '生'), blockId:b.blockId};
   });
+  // 那天没有早八（9 点前没课）→ 6:00–9:45 自动是学习时间
+  var early = coursesOf(day).some(function(c){ return hm2min(c.start) < 540; });
+  if(!early) out.push({start:360, end:585, kind:'study', label:'学', auto:true});
+  // 每天晚上 20:00–22:00 是生活时间
+  out.push({start:20*60, end:22*60, kind:'life', label:'生', auto:true});
+  out.sort(function(a, b){ return a.start - b.start; });
+  return out;
 }
 function dayTasks(list, day){
   return list.filter(function(t){
@@ -1072,8 +1115,9 @@ function columnHtml(day, idx, pending){
       + ' data-st="'+c.start+'" data-en="'+c.end+'">'
       + esc(shortTitle(courseName(c.title),6))+' '+c.start+'</span>');
   });
-  var lateHtml = lateBits.length ? lateBits.join('')
-    : '<span class="lt-empty">'+esc(hhmmH(DEND))+' 之后 · 空</span>';
+  var lateCount = late.length + lateCourses.length;
+  var lateHtml = '<button class="lt-cell'+(lateCount ? ' has' : '')+'" data-act="late" data-day="'+day+'">'
+    + esc(hhmmH(DEND)) + ' 之后 · ' + (lateCount ? lateCount + ' 项' : '空') + ' ▸</button>';
 
   var full = freeMinutes(day) < 120;
   var stat = '<span class="stripstat'+(full?' full':'')+'">'+(full?'排满':'待排')+'</span>';
@@ -1332,7 +1376,7 @@ function formWarning(){
   if(!formState || !formState.time) return '';
   var day = formState.day, m = hm2min(formState.time), dur = formState.minutes;
   if(day === TODAY && m < nowMin()) return '这个时间已经过去了';
-  if(m + dur > DEND*60) return formState.time+' 加 '+dur+' 分钟会超过 '+hm(DEND*60);
+  if(m + dur > 24*60) return formState.time+' 加 '+dur+' 分钟会超过 24:00';
   var busy = busyIntervals(day, null);
   if(overlapsBusy(m, m + dur, busy)){
     var free = chooseStart(day, m, dur, null);
@@ -1349,12 +1393,13 @@ function showForm(){
   var dur = formState.minutes;
   var nowM = nowMin();
   var slots = '';
-  for(var m = DSTART*60; m <= DEND*60 - 30; m += 30){
+  for(var m = DSTART*60; m <= 24*60 - 30; m += 30){
     var label = hm(m);
     var busy = overlapsBusy(m, m + dur, busyIntervals(day, null));
     var past = (day === TODAY && m < nowM);
+    var lateSlot = m >= DEND*60;      // 20:25 之后：不进网格，落在底栏
     slots += '<button class="fchip slot'+(formState.time === label ? ' on' : '')
-      + (busy ? ' busy' : '') + (past ? ' past' : '')
+      + (busy ? ' busy' : '') + (past ? ' past' : '') + (lateSlot ? ' late' : '')
       + '" data-act="ftime" data-v="'+label+'">'+label+'</button>';
   }
   var cats = formChip('fcat','study','学',formState.cat==='study')
@@ -1386,9 +1431,12 @@ function showForm(){
     + '<div class="fslots" id="fslots">'+slots+'</div></div>'
     + '<div class="fwarn"'+(warn ? '' : ' hidden')+'>'+esc(warn)+'</div>'
     + '</div>'
-    + '<div class="acts"><button class="primary" data-act="fadd">加入日历</button>'
-    + '<button data-act="fclose">取消</button></div>'
-    + '<button class="ftodo" data-act="ftodo">放入待排（不排时间）</button>';
+    + '<div class="acts two">'
+    + '<button class="primary" data-act="fadd">加入日历</button>'
+    + '<button data-act="fmanual">亲自落位</button>'
+    + '<button data-act="ftodo">放入待排</button>'
+    + '<button data-act="fclose">取消</button>'
+    + '</div>';
   modal.hidden = false;
 
   var wantFocus = !!formState.focus;
@@ -1429,12 +1477,12 @@ function openForm(){
   };
   showForm();
 }
-function createDraft(withTime){
-  if(!formState) return;
+function createDraft(withTime, manual){
+  if(!formState) return null;
   var title = String(formState.title || '').trim();
-  if(!title){ toast('先写个标题'); return; }
+  if(!title){ toast('先写个标题'); return null; }
   var code = pickTempCode();
-  addOp({
+  var op = {
     kind: 'N',
     code: code,
     title: title,
@@ -1444,10 +1492,15 @@ function createDraft(withTime){
     day: formState.day,
     time: withTime ? formState.time : null,
     loc: '',
-  });
+  };
+  // 亲自落位：这一天不自动排，明天起照常自动排
+  if(manual) op.manual = formState.day;
+  addOp(op);
   lastForm = {cat: formState.cat, minutes: formState.minutes};
   closeModal();
+  if(manual) return code;
   toast(withTime ? '已添加，发同步码后生效' : '已放进待排，发同步码后生效');
+  return code;
 }
 
 function showModal(code){
@@ -1482,8 +1535,141 @@ function showModal(code){
         : '<button data-act="mminus" data-code="'+t.code+'">−15 分</button>'
           + '<button data-act="mplus" data-code="'+t.code+'">+15 分</button>')
     + '<button data-act="mplace" data-code="'+t.code+'">放到日历</button>'
+    + '<button data-act="medit" data-code="'+t.code+'">编辑</button>'
     + '<button data-act="close">关闭</button></div>';
   modal.hidden = false;
+}
+
+function showLate(day){
+  var all = viewTasks();
+  var rows = [];
+  all.forEach(function(t){
+    if(t._done || t._dropped) return;
+    if(!t._slot || !t._slot.start) return;
+    if(dayOfIso(t._slot.start) !== day) return;
+    if(minOfIso(t._slot.start) < DEND*60) return;
+    rows.push('<div class="tline">'
+      + '<button class="cb" data-act="check" data-code="'+t.code+'" aria-label="完成"></button>'
+      + '<b>'+esc(t.title)+'</b>'
+      + '<span style="color:var(--dim)">'+hhmmIso(t._slot.start)+'–'+hhmmIso(t._slot.end)+'</span></div>');
+  });
+  coursesOf(day).forEach(function(c){
+    if(hm2min(c.start) < DEND*60) return;
+    rows.push('<div class="tline"><b>'+esc(courseName(c.title))+'</b>'
+      + '<span style="color:var(--dim)">课 '+c.start+'–'+c.end+'</span></div>');
+  });
+  sheet.className = 'sheet';
+  sheet.innerHTML = sheetHead()
+    + '<div class="body"><h2>'+md(day)+' · '+hhmmH(DEND)+' 之后</h2>'
+    + '<div class="meta">晚上 20:00–22:00 是生活时间，课优先，任务排在课后面。</div>'
+    + (rows.length ? rows.join('') : '<div class="empty">这会儿没有安排</div>')
+    + '</div>'
+    + '<div class="acts"><button data-act="close">关闭</button></div>';
+  modal.hidden = false;
+}
+
+function blkChip(act, v, label, on){
+  return '<button class="fchip'+(on?' on':'')+'" data-act="'+act+'" data-v="'+v+'">'+label+'</button>';
+}
+function showBlocks(){
+  var st = appState.blkEdit || {};
+  var wd = st.wd || (((weekdayOf(TODAY)+6)%7)+1);
+  var start = st.start || '19:00';
+  var end = st.end || '21:00';
+  var kind = st.kind || 'life';
+  var names = ['一','二','三','四','五','六','日'];
+  var wdChips = names.map(function(n, i){ return blkChip('bwd', i+1, '周'+n, wd === i+1); }).join('');
+  var times = [];
+  for(var m = 360; m <= 22*60; m += 30) times.push(m);
+  var startChips = times.map(function(m){ return blkChip('bstart', hm(m), hm(m), start === hm(m)); }).join('');
+  var endChips = times.map(function(m){ return blkChip('bend', hm(m), hm(m), end === hm(m)); }).join('');
+  var kindChips = blkChip('bkind','study','学',kind === 'study') + blkChip('bkind','life','生活',kind === 'life');
+  var list = localBlocks().slice().sort(function(a, b){
+    return (a.weekday - b.weekday) || (a.start < b.start ? -1 : 1);
+  });
+  var rows = list.map(function(b){
+    return '<div class="tline"><b>周'+names[b.weekday-1]+' '+b.start+'–'+b.end+'</b>'
+      + '<span style="color:var(--dim)">'+(b.kind === 'study' ? '学' : '生')+'</span>'
+      + '<button data-act="bdel" data-wd="'+b.weekday+'" data-st="'+b.start+'" data-en="'+b.end+'">删</button></div>';
+  }).join('') || '<div class="empty">还没有设置（每天没早八时 6:00–9:00 会自动是学习时间）</div>';
+  sheet.className = 'sheet form';
+  sheet.innerHTML = sheetHead()
+    + '<div class="body"><h2>生活时间</h2>'
+    + '<div class="meta">没有早八的那天，6:00–9:00 自动算学习时间。这里可以另加学/玩时间，课永远优先。</div>'
+    + '<div class="frow"><span class="flabel">星期</span>'+wdChips+'</div>'
+    + '<div class="frow"><span class="flabel">开始</span><div class="fslots">'+startChips+'</div></div>'
+    + '<div class="frow"><span class="flabel">结束</span><div class="fslots">'+endChips+'</div></div>'
+    + '<div class="frow"><span class="flabel">类型</span>'+kindChips+'</div>'
+    + '<div class="sec"><h3>已设置</h3>'+rows+'</div>'
+    + '</div>'
+    + '<div class="acts"><button class="primary" data-act="bsave">保存这一块</button>'
+    + '<button data-act="close">关闭</button></div>';
+  modal.hidden = false;
+}
+
+function editCatChips(code, cat){  return ['study','play','life','other'].map(function(c){
+    return '<button class="fchip'+(cat===c?' on':'')+'" data-act="ecat" data-v="'+c
+      + '" data-code="'+code+'">'+catName(c)+'</button>';
+  }).join('');
+}
+function showEdit(code){
+  var t = findAll(code); if(!t) return;
+  var st = appState.edit || {};
+  var cat = st.cat || t.category || 'other';
+  var mins = st.minutes || t.estMin || 30;
+  var titleVal = st.title != null ? st.title : t.title;
+  var noteVal = st.note != null ? st.note : (t.note || '');
+  var locVal = st.loc != null ? st.loc : (t.loc || '');
+  sheet.className = 'sheet form';
+  sheet.innerHTML = sheetHead()
+    + '<div class="body"><h2>编辑任务</h2>'
+    + '<input id="etitle" class="finput" placeholder="标题" value="'+esc(titleVal)+'">'
+    + '<textarea id="enote" class="fnote" placeholder="备注">'+esc(noteVal)+'</textarea>'
+    + '<input id="eloc" class="finput" style="margin-top:8px" placeholder="地点（可选）" value="'+esc(locVal)+'">'
+    + '<div class="frow"><span class="flabel">类型</span>'+editCatChips(code, cat)+'</div>'
+    + '<div class="frow"><span class="flabel">时长</span>'
+    + [15,30,45,60,90,120].map(function(n){
+        return '<button class="fchip'+(mins===n?' on':'')+'" data-act="emin" data-v="'+n
+          + '" data-code="'+code+'">'+n+'</button>';
+      }).join('') + '</div>'
+    + '</div>'
+    + '<div class="acts"><button class="primary" data-act="esave" data-code="'+code+'">保存</button>'
+    + '<button data-act="close">取消</button></div>';
+  modal.hidden = false;
+}
+function saveEdit(code){
+  var t = findAll(code); if(!t) return;
+  var titleEl = document.getElementById('etitle');
+  var noteEl = document.getElementById('enote');
+  var locEl = document.getElementById('eloc');
+  var title = titleEl ? String(titleEl.value || '').trim() : '';
+  if(!title){ toast('标题不能空'); return; }
+  var st = appState.edit || {};
+  var payload = {
+    code: code,
+    title: title,
+    note: noteEl ? String(noteEl.value || '').trim() : (t.note || ''),
+    loc: locEl ? String(locEl.value || '').trim() : (t.loc || ''),
+    category: st.cat || t.category || 'other',
+    minutes: st.minutes || t.estMin || 30,
+  };
+  if(t._draft){
+    // 草稿还没出去：直接改那条 N 指令
+    var op = null;
+    appState.ops.forEach(function(o){ if(o.code === code && o.kind === 'N') op = o; });
+    if(op){
+      op.title = payload.title; op.note = payload.note; op.loc = payload.loc;
+      op.category = payload.category; op.minutes = payload.minutes;
+      op.at = Date.now();
+      saveOps(); render();
+    }
+  } else {
+    addOp({kind:'E', code:payload.code, title:payload.title, note:payload.note,
+           loc:payload.loc, category:payload.category, minutes:payload.minutes});
+  }
+  appState.edit = null;
+  closeModal();
+  toast('已改，发同步码后生效');
 }
 
 function showCode(code, copied){
@@ -1559,7 +1745,8 @@ function codeFor(list){
   list.filter(function(o){ return o.kind === 'N'; }).forEach(function(o){
     var line = 'N '+o.code+' '+o.day+' '+(o.time || '-')+' '+(o.minutes || 30)
       +' '+(o.category || 'other')+' '+codeText(o.title)+'|'+codeText(o.loc);
-    if(codeText(o.note)) line += '|' + codeText(o.note);
+    if(codeText(o.note) || o.manual) line += '|' + codeText(o.note);
+    if(o.manual) line += '|' + o.manual;
     lines.push(line);
   });
   list.filter(function(o){ return o.kind !== 'N'; }).forEach(function(o){
@@ -1568,6 +1755,14 @@ function codeFor(list){
     else if(o.kind === 'L') lines.push('L '+o.code+' '+o.minutes+' '+title);
     else if(o.kind === 'P') lines.push('P '+o.code+' '+o.start.slice(0,16)+' '+o.minutes+' '+title);
     else if(o.kind === 'S') lines.push('S '+o.code);
+    else if(o.kind === 'E'){
+      var ebody = 'E '+o.code+' '+(o.minutes || 30)+' '+(o.category || 'other')+' '+codeText(o.title)
+        +'|'+codeText(o.loc || '');
+      if(codeText(o.note || '')) ebody += '|' + codeText(o.note);
+      lines.push(ebody);
+    }
+    else if(o.kind === 'B') lines.push('B '+o.weekday+' '+o.start+' '+o.end+' '+o.blockKind);
+    else if(o.kind === 'RB') lines.push('RB '+o.weekday+' '+o.start+' '+o.end);
     else if(o.kind === 'F') lines.push('F '+o.date+' '+(o.count || 0));
     else if(o.kind === 'X') lines.push('X '+o.code);
   });
@@ -1656,8 +1851,9 @@ function shiftPlaced(t, dir){
   var end = t._slot.end ? minOfIso(t._slot.end) : start + (t.estMin || 30);
   var dur = Math.max(10, end - start);
   var next = start + dir * SHIFT_STEP;
+  var dayEnd = (start >= DEND * 60) ? 24 * 60 : DEND * 60;   // 20:25 之后的任务可以在底栏那一段里挪
   if(next < DSTART * 60){ toast('已经到时间轴最上面了'); return; }
-  if(next + dur > DEND * 60){ toast('再挪就超出时间轴底部了'); return; }
+  if(next + dur > dayEnd){ toast('再挪就超出今天的范围了'); return; }
   if(overlapsBusy(next, next + dur, busyIntervals(day, t.code))){
     toast('那个位置已经有课或任务，挪不过去');
     return;
@@ -1680,6 +1876,7 @@ function startPlace(code){
   if(!t){ toast('这条已经完成了'); return; }
   appState.sel = code;
   closeModal();
+  setDrawer(false);
   render();
   toast('点日历里的一格放下');
 }
@@ -1858,6 +2055,18 @@ document.addEventListener('click', function(e){
     return;
   }
   if(act === 'ftime'){ formState.title = readFormTitle(); formState.note = readFormNote(); formState.time = el.dataset.v; showForm(); return; }
+  if(act === 'fmanual'){
+    formState.title = readFormTitle();
+    formState.note = readFormNote();
+    var newCode = createDraft(false, true);
+    if(newCode){
+      appState.sel = newCode;
+      setDrawer(false);
+      render();
+      toast('点日历里的一格放下');
+    }
+    return;
+  }
   if(act === 'fadd'){
     formState.title = readFormTitle();
     formState.note = readFormNote();
@@ -1975,6 +2184,55 @@ document.addEventListener('click', function(e){
   if(act === 'mminus'){ adjust(code, -1); return; }
   if(act === 'mplus'){ adjust(code, 1); return; }
   if(act === 'mplace'){ startPlace(code); return; }
+  if(act === 'medit'){ appState.edit = null; showEdit(code); return; }
+  if(act === 'ecat'){
+    var cur = appState.edit || {};
+    var te = document.getElementById('etitle'); if(te) cur.title = te.value;
+    var ne = document.getElementById('enote'); if(ne) cur.note = ne.value;
+    var le = document.getElementById('eloc'); if(le) cur.loc = le.value;
+    cur.cat = el.dataset.v;
+    appState.edit = cur;
+    showEdit(code);
+    return;
+  }
+  if(act === 'emin'){
+    var cur2 = appState.edit || {};
+    var te2 = document.getElementById('etitle'); if(te2) cur2.title = te2.value;
+    var ne2 = document.getElementById('enote'); if(ne2) cur2.note = ne2.value;
+    var le2 = document.getElementById('eloc'); if(le2) cur2.loc = le2.value;
+    cur2.minutes = parseInt(el.dataset.v, 10);
+    appState.edit = cur2;
+    showEdit(code);
+    return;
+  }
+  if(act === 'esave'){ saveEdit(code); return; }
+  if(act === 'late'){ showLate(el.dataset.day); return; }
+  if(act === 'blk'){ appState.blkEdit = null; showBlocks(); return; }
+  if(act === 'bwd'){ var b1 = appState.blkEdit || {}; b1.wd = parseInt(el.dataset.v, 10); appState.blkEdit = b1; showBlocks(); return; }
+  if(act === 'bstart'){ var b2 = appState.blkEdit || {}; b2.start = el.dataset.v; appState.blkEdit = b2; showBlocks(); return; }
+  if(act === 'bend'){ var b3 = appState.blkEdit || {}; b3.end = el.dataset.v; appState.blkEdit = b3; showBlocks(); return; }
+  if(act === 'bkind'){ var b4 = appState.blkEdit || {}; b4.kind = el.dataset.v; appState.blkEdit = b4; showBlocks(); return; }
+  if(act === 'bsave'){
+    var b5 = appState.blkEdit || {};
+    var wd5 = b5.wd || (((weekdayOf(TODAY)+6)%7)+1);
+    var st5 = b5.start || '19:00';
+    var en5 = b5.end || '21:00';
+    if(st5 >= en5){ toast('结束要晚于开始'); return; }
+    var kind5 = b5.kind || 'life';
+    addOp({kind:'B', code:('b_'+wd5+'_'+st5+'_'+en5).replace(/:/g, ''),
+           weekday:wd5, start:st5, end:en5, blockKind:kind5, title:'生活时间'});
+    toast('已加一块，发同步码后生效');
+    showBlocks();
+    return;
+  }
+  if(act === 'bdel'){
+    var wd6 = parseInt(el.dataset.wd, 10), st6 = el.dataset.st, en6 = el.dataset.en;
+    addOp({kind:'RB', code:('b_'+wd6+'_'+st6+'_'+en6).replace(/:/g, ''),
+           weekday:wd6, start:st6, end:en6, title:'删生活时间'});
+    toast('已删，发同步码后生效');
+    showBlocks();
+    return;
+  }
   if(act === 'copyagain'){
     var box = document.getElementById('codebox');
     if(box){ copyText(box.value).then(function(ok){ toast(ok ? '已复制' : '复制失败，长按全选'); }); }
