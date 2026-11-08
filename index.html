@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="行程">
 <meta name="theme-color" content="#161a21">
-<title>行程看板 · 2026-11-07</title>
+<title>行程看板 · 2026-11-08</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
@@ -370,6 +370,18 @@ details.trash summary{font-size:9px;color:var(--dim)}
 .mday .tline{display:flex;align-items:center;gap:6px;font-size:11px;padding:3px 0}
 .mday .tline b{font-weight:600}
 .mday .empty{font-size:10px;color:var(--dim)}
+/* 月历：生活时间块 / 月度汇总 */
+.mcell .mblk{position:absolute;bottom:5px;height:3px;border-radius:2px;pointer-events:none}
+.mcell .mblk.s{left:3px;background:var(--study)}
+.mcell .mblk.l{right:3px;background:var(--play)}
+.msum{display:flex;flex-wrap:wrap;gap:3px 9px;padding:0 2px 6px;margin-bottom:3px;
+  font-size:9px;color:var(--dim);border-bottom:1px solid var(--line)}
+.msum b{color:var(--ink);font-weight:800}
+.msum b.k{color:var(--study)}
+.msum b.k2{color:var(--play)}
+.mday .mblkrow{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:9px;color:var(--dim);
+  margin:-2px 0 6px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+.mday .mblkrow b{color:var(--ink);font-weight:700}
 
 .toast{position:absolute;left:50%;bottom:calc(var(--bar) + 64px);transform:translate(-50%,8px);
   z-index:70;max-width:76vw;text-align:center;background:#000c;color:#fff;
@@ -415,7 +427,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <header class="hdr">
     <span class="logo">行程</span>
     <button class="hbtn nav" data-act="day" data-d="-1" aria-label="前一天">‹</button>
-    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-11-07</span>
+    <span class="dt" id="hdt" data-act="today" title="回到今天">2026-11-08</span>
     <button class="hbtn nav" data-act="day" data-d="1" aria-label="后一天">›</button>
     <span class="hnav">
       <button data-act="wk" data-d="-7" aria-label="上一周">−</button>
@@ -451,7 +463,7 @@ details.trash summary{font-size:9px;color:var(--dim)}
   <div id="modal" class="modal" hidden><div class="sheet" id="sheet"></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script>window.BOARD={"v":1,"today":"2026-11-07","generatedAt":"2026-11-07T12:11:17+08:00","boardId":"61d1","syncedThrough":"2026-11-07T12:11:17+08:00","stats":{"total":44,"pending":10,"doneToday":7,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"todo":5,"today":5,"tomorrow":0,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[{"taskId":"t_cfd70448","title":"制作中转站","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0448"},{"taskId":"t_89706926","title":"雨课堂插件","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"6926"},{"taskId":"t_ea0b0675","title":"制作练枪地图","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0675"},{"taskId":"t_c0c653a3","title":"英语成功演讲","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T21:44:27+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"53a3"},{"taskId":"t_caa9fb3b","title":"Python课作业","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"fb3b"},{"taskId":"t_c077cb44","title":"看完Python网课","deadline":null,"slot":{"start":"2026-11-07T18:40:00+08:00","end":"2026-11-07T19:25:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:54:26+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"cb44"},{"taskId":"t_1ec5c2f1","title":"改ui","deadline":null,"slot":{"start":"2026-11-07T20:00:00+08:00","end":"2026-11-07T20:45:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"life","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:54:26+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"today","code":"c2f1"},{"taskId":"t_22e0d056","title":"制图网课","deadline":null,"slot":{"start":"2026-11-07T19:25:00+08:00","end":"2026-11-07T19:55:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:54:26+08:00","reason":"user_place","by":"user"},"stale":false,"bucket":"today","code":"d056"},{"taskId":"t_b4f2c05f","title":"洗衣服","deadline":null,"slot":{"start":"2026-11-07T14:30:00+08:00","end":"2026-11-07T15:00:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T12:11:17+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"today","code":"c05f"},{"taskId":"t_65453848","title":"倒垃圾","deadline":null,"slot":{"start":"2026-11-07T15:00:00+08:00","end":"2026-11-07T15:30:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T12:11:17+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"today","code":"3848"}],"big":[],"trash":[{"taskId":"t_ef02d970","title":"周末出门彩票","deadline":null,"slot":{"start":"2026-11-07T19:55:00+08:00","end":"2026-11-07T20:25:00+08:00"},"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-05T18:01:22+08:00","reason":"user_place","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_cf25de0c","title":"规划出门路程","deadline":null,"slot":{"start":"2026-11-06T19:55:00+08:00","end":"2026-11-06T20:25:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_e4ee59e9","title":"学费减免","deadline":null,"slot":{"start":"2026-11-06T18:30:00+08:00","end":"2026-11-06T19:00:00+08:00"},"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-06T18:19:34+08:00","reason":"user_place","by":"user"},"stale":false,"trashState":"done"},{"taskId":"t_aed7e054","title":"数学中值定理网课","deadline":null,"slot":{"start":"2026-11-08T06:00:00+08:00","end":"2026-11-08T06:45:00+08:00"},"window":{"start":"2026-11-08T04:00:00+08:00","end":"2026-11-08T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-07T11:46:55+08:00","reason":"auto_block","by":"rule"},"stale":false,"trashState":"done"},{"taskId":"t_f7389db9","title":"高数线上测试","deadline":null,"slot":null,"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"},{"taskId":"t_76926473","title":"拿一块一块的现金","deadline":null,"slot":{"start":"2026-11-07T06:00:00+08:00","end":"2026-11-07T06:15:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":15,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T11:54:26+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"},{"taskId":"t_ae0be812","title":"拿大额的现金","deadline":null,"slot":{"start":"2026-11-07T06:30:00+08:00","end":"2026-11-07T06:45:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":15,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T11:54:26+08:00","status":"done","doneAt":"2026-11-07T11:54:26+08:00","droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"trashState":"done"}],"review":[],"fitness":{"2026-11-05":1},"applied":["444c","95e3","2add","29f7","c439","cb95","5ace","5acd","2c7b","9e77","be64","5ecb","004b","8d7a","514c","10f1","25bc","2b7e","9db4","f43d","af95","9a12","6ec6"],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{"10":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语读写","weekday":2,"start":"08:00","end":"09:35","loc":"二教C-405"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"11":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"二教C-405"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"},{"title":"思想政治理论课-5","weekday":5,"start":"10:40","end":"12:15","loc":"二教C-306"}]},"termStart":"2026-10-26","termWeek":9};</script>
+<script>window.BOARD={"v":1,"today":"2026-11-08","generatedAt":"2026-11-08T10:16:05+08:00","boardId":"9279","syncedThrough":"2026-11-08T10:16:05+08:00","stats":{"total":44,"pending":10,"doneToday":0,"overdue":0,"big":0,"deferTotal":0},"counts":{"overdue":0,"todo":5,"today":3,"tomorrow":2,"dayAfter":0,"week":0,"countdown":0,"backlog":0},"tasks":[{"taskId":"t_cfd70448","title":"制作中转站","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0448"},{"taskId":"t_89706926","title":"雨课堂插件","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"6926"},{"taskId":"t_ea0b0675","title":"制作练枪地图","deadline":null,"slot":null,"window":{"start":"2026-11-03T04:00:00+08:00","end":"2026-11-03T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T08:21:13+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"0675"},{"taskId":"t_c0c653a3","title":"英语成功演讲","deadline":null,"slot":null,"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-04T21:44:27+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"53a3"},{"taskId":"t_caa9fb3b","title":"Python课作业","deadline":null,"slot":null,"window":{"start":"2026-11-05T04:00:00+08:00","end":"2026-11-05T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":true,"note":null,"manual":null,"createdAt":"2026-11-05T18:01:22+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"todo","code":"fb3b"},{"taskId":"t_1ec5c2f1","title":"改ui","deadline":null,"slot":{"start":"2026-11-08T20:00:00+08:00","end":"2026-11-08T20:45:00+08:00"},"window":{"start":"2026-11-06T04:00:00+08:00","end":"2026-11-06T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"life","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-06T18:19:34+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-08T10:16:05+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"today","code":"c2f1"},{"taskId":"t_b4f2c05f","title":"洗衣服","deadline":null,"slot":{"start":"2026-11-07T14:30:00+08:00","end":"2026-11-07T15:00:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T12:11:17+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"today","code":"c05f"},{"taskId":"t_65453848","title":"倒垃圾","deadline":null,"slot":{"start":"2026-11-07T15:00:00+08:00","end":"2026-11-07T15:30:00+08:00"},"window":{"start":"2026-11-07T04:00:00+08:00","end":"2026-11-07T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"other","repeat":null,"big":false,"block":null,"repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-07T12:11:17+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":null,"stale":false,"bucket":"today","code":"3848"},{"taskId":"t_c077cb44","title":"看完Python网课","deadline":null,"slot":{"start":"2026-11-09T06:00:00+08:00","end":"2026-11-09T06:45:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":45,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-08T10:16:05+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"cb44"},{"taskId":"t_22e0d056","title":"制图网课","deadline":null,"slot":{"start":"2026-11-09T06:45:00+08:00","end":"2026-11-09T07:15:00+08:00"},"window":{"start":"2026-11-04T04:00:00+08:00","end":"2026-11-04T23:59:00+08:00"},"weight":1,"estMin":30,"loc":null,"tags":[],"src":null,"category":"study","repeat":null,"big":false,"block":"study","repeatOf":null,"todo":false,"note":null,"manual":null,"createdAt":"2026-11-04T18:09:10+08:00","status":"pending","doneAt":null,"droppedAt":null,"dropReason":null,"deferCount":0,"lastMove":null,"lastPlan":{"at":"2026-11-08T10:16:05+08:00","reason":"auto_block","by":"rule"},"stale":false,"bucket":"tomorrow","code":"d056"}],"big":[],"trash":[],"review":[],"fitness":{"2026-11-05":1},"applied":["444c","95e3","2add","29f7","c439","cb95","5ace","5acd","2c7b","9e77","be64","5ecb","004b","8d7a","514c","10f1","25bc","2b7e","9db4","f43d","af95","9a12","6ec6","27ef"],"blocks":[],"courses":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"overrides":{"10":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语读写","weekday":2,"start":"08:00","end":"09:35","loc":"二教C-405"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"实验楼 F302"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"}],"11":[{"title":"高等数学A","weekday":1,"start":"09:45","end":"11:25","loc":"一教A阶-101"},{"title":"现代工程图学","weekday":1,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"化工报国（求真）","weekday":1,"start":"15:15","end":"16:50","loc":"二教 D阶101"},{"title":"机器人系统设计方法与实践","weekday":1,"start":"18:00","end":"20:25","loc":"一教 A501"},{"title":"英语听说","weekday":2,"start":"09:45","end":"11:25","loc":"二教C-405"},{"title":"Python语言程序设计与实践","weekday":2,"start":"13:30","end":"15:05","loc":"一教 A404"},{"title":"Python语言程序设计与实践","weekday":2,"start":"15:15","end":"16:50","loc":"实验楼 A309"},{"title":"大学生心理健康教育","weekday":3,"start":"08:00","end":"09:35","loc":"一教 A阶102"},{"title":"高等数学A","weekday":3,"start":"09:45","end":"11:25","loc":"一教 A阶101"},{"title":"现代工程图学","weekday":3,"start":"13:30","end":"15:05","loc":"二教 C306"},{"title":"思想政治理论课-1","weekday":4,"start":"09:45","end":"12:15","loc":"二教 C302"},{"title":"体育","weekday":4,"start":"13:30","end":"15:05","loc":"体育馆 乒乓球馆"},{"title":"高等数学A","weekday":5,"start":"08:00","end":"09:35","loc":"一教 A阶101"},{"title":"思想政治理论课-5","weekday":5,"start":"10:40","end":"12:15","loc":"二教C-306"}]},"termStart":"2026-10-26","termWeek":9};</script>
 <script>
 window.__jyBoot = function(){
 'use strict';
@@ -881,6 +893,70 @@ function dayTasks(list, day){
 }
 
 /* ---------------- 渲染 ---------------- */
+/* ---------------- 月历 · 生活时间块 / 打卡统计 ---------------- */
+/* 口径（主人 2026-11-07 拍板）：
+   · 名义块时长 = blocksOf(day) 里各块 (end-start) 之和，含自动块、不扣课；
+   · 实际落位时长 = 任务 slot 的 (end-start) 聚合，按日/按类；
+   · 健身：count>0 才算打卡，取消(0)视为断。 */
+function monthSpan(key){
+  var p = key.split('-'), y = parseInt(p[0],10), mo = parseInt(p[1],10)-1;
+  var out = [], n = new Date(Date.UTC(y, mo+1, 0)).getUTCDate();
+  for(var d=1; d<=n; d++) out.push(y+'-'+pad(mo+1)+'-'+pad(d));
+  return out;
+}
+function durText(min){
+  var m = Math.max(0, Math.round(min||0)), h = Math.floor(m/60), r = m%60;
+  if(h && r) return h+'小时'+r+'分';
+  if(h) return h+'小时';
+  return r+'分';
+}
+function blockMinutes(blocks){
+  var s=0, l=0;
+  (blocks||[]).forEach(function(b){
+    var m = Math.max(0, Math.min(1440, b.end||0) - Math.max(0, b.start||0));
+    if(b.kind === 'study') s += m; else l += m;
+  });
+  return {study:s, life:l};
+}
+function monthBlockStats(key, cached){
+  var s=0, l=0, days=0;
+  monthSpan(key).forEach(function(d){
+    var m = blockMinutes(cached(d));
+    s += m.study; l += m.life;
+    if(m.study || m.life) days++;
+  });
+  return {study:s, life:l, days:days};
+}
+function monthPlannedStats(key, pending){
+  var out = {study:0, play:0, life:0, other:0, total:0, count:0, byDay:{}};
+  pending.forEach(function(t){
+    var s = t._slot && t._slot.start;
+    if(!s) return;
+    var d = dayOfIso(s);
+    if(d.slice(0,7) !== key) return;
+    var mins = 0;
+    if(t._slot.end) mins = Math.round((Date.parse(t._slot.end) - Date.parse(t._slot.start))/60000);
+    if(!(mins > 0)) mins = Math.max(0, parseInt(t.estMin,10) || 0);
+    if(!(mins > 0)) return;
+    mins = Math.min(mins, 720);
+    var c = t.category || 'other';
+    out[c] = (out[c] || 0) + mins;
+    out.total += mins; out.count++;
+    out.byDay[d] = (out.byDay[d] || 0) + mins;
+  });
+  return out;
+}
+function monthFitStats(key, fit){
+  var total=0, days=0, best=0, run=0;
+  monthSpan(key).forEach(function(d){
+    var c = parseInt(fit[d] || 0, 10);
+    if(c > 0){ total += c; days++; run++; if(run > best) best = run; }
+    else run = 0;
+  });
+  var cur = 0, d = dayOfMs(Date.now());
+  while(parseInt(fit[d] || 0, 10) > 0 && cur < 400){ cur++; d = addDays(d, -1); }
+  return {total:total, days:days, longest:best, current:cur};
+}
 /* ---------------- 月历 ---------------- */
 function monthTitle(key){
   var p = key.split('-');
@@ -944,6 +1020,12 @@ function renderMonth(pending){
     bigMap[d] = (bigMap[d] || 0) + 1;
   });
   var sel = appState.daySel || today;
+  // 42 个格子共用一份按天缓存：blocksOf() 内部要算课表，别在渲染循环里重算
+  var blkCache = {};
+  function cached(d){
+    if(!(d in blkCache)) blkCache[d] = blocksOf(d);
+    return blkCache[d];
+  }
   var cells = '';
   for(var i = 0; i < total; i++){
     var dn = i - lead + 1;
@@ -959,12 +1041,21 @@ function renderMonth(pending){
     if(fcnt > 0) bar = '<span class="mfit hot"></span>';
     else if(dkey <= today && lastFitBefore(fit, dkey)) bar = '<span class="mfit"></span>';
     var fnum = fcnt > 1 ? '<span class="mfitn">' + fcnt + '</span>' : '';
+    var bm = blockMinutes(cached(dkey)), bbar = '';
+    if(bm.study) bbar += '<span class="mblk s" style="width:'
+      + Math.min(46, Math.max(8, Math.round(bm.study / 6))) + '%"></span>';
+    if(bm.life) bbar += '<span class="mblk l" style="width:'
+      + Math.min(46, Math.max(8, Math.round(bm.life / 6))) + '%"></span>';
     cells += '<button class="' + cls + '" data-act="mday" data-day="' + dkey + '">'
       + '<span class="mn">' + dt.getUTCDate() + '</span>'
       + (dots ? '<span class="mdots">' + dots + '</span>' : '')
       + (bigMap[dkey] ? '<span class="mbig">大事</span>' : '')
-      + bar + fnum + '</button>';
+      + bar + fnum + bbar + '</button>';
   }
+  var bs = monthBlockStats(key, cached);
+  var ps = monthPlannedStats(key, pending);
+  var fs = monthFitStats(key, fit);
+  var selB = blockMinutes(cached(sel));
   var list = dayTasks(pending, sel);
   var rowsHtml = list.map(function(t){
     return '<div class="tline">'
@@ -977,6 +1068,9 @@ function renderMonth(pending){
   var fc = fit[sel] || 0;
   var panel = '<div class="mday">'
     + '<h3>' + md(sel) + ' 周' + WD[weekdayOf(sel)] + '</h3>'
+    + '<div class="mblkrow">名义 <b>学 ' + durText(selB.study) + '</b>'
+    + ' · <b>生活 ' + durText(selB.life) + '</b>'
+    + ' ／ 落位 <b>' + durText(ps.byDay[sel] || 0) + '</b></div>'
     + '<div class="frow2"><b>健身 ' + fc + ' 次</b>'
     + '<button data-act="fit-add" data-day="' + sel + '">+1</button>'
     + (fc > 0 ? '<button class="undo" data-act="fit-sub" data-day="' + sel + '">−1</button>' : '')
@@ -988,6 +1082,12 @@ function renderMonth(pending){
     + '<span class="mtitle">' + monthTitle(key) + '</span>'
     + '<button data-act="mnext">›</button>'
     + '<button class="fitbtn" data-act="fit-today">🏋 今天</button></div>'
+    + '<div class="msum">'
+    + '<span>名义 <b class="k">学 ' + durText(bs.study) + '</b> / '
+    + '<b class="k2">生活 ' + durText(bs.life) + '</b> · ' + bs.days + ' 天</span>'
+    + '<span>落位 <b>' + durText(ps.total) + '</b>（' + ps.count + ' 项）</span>'
+    + '<span>健身 <b>' + fs.total + ' 次</b> · ' + fs.days + ' 天 · 连 '
+    + fs.current + ' 天 / 最长 ' + fs.longest + ' 天</span></div>'
     + '<div class="mwd"><span>一</span><span>二</span><span>三</span><span>四</span>'
     + '<span>五</span><span>六</span><span>日</span></div>'
     + '<div class="mgrid">' + cells + '</div>' + panel + '</div>';
